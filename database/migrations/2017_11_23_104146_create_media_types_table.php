@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEtapeTypesTable extends Migration
+class CreateMediaTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateEtapeTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('etape_types', function (Blueprint $table) {
+        Schema::create('media_types', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nom')->unique();
+            $table->boolean('is_video');
         });
     }
 
@@ -26,6 +27,6 @@ class CreateEtapeTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('etape_types');
+        Schema::dropIfExists('media_types');
     }
 }
