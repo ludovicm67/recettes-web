@@ -15,13 +15,13 @@ class CreateIngredientsTable extends Migration
     {
         Schema::create('ingredients', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nom');
-            $table->integer('calories');
-            $table->float('lipides');
-            $table->float('glucides');
-            $table->float('protides');
+            $table->string('nom')->unique();
+            $table->integer('calories')->min(0);
+            $table->float('lipides')->min(0);
+            $table->float('glucides')->min(0);
+            $table->float('protides')->min(0);
             $table->boolean('dispo_par_defaut');
-            $table->integer('popularite');
+            $table->integer('popularite')->min(0);
             $table->unsignedInteger('id_unite');
             $table->timestamps();
 

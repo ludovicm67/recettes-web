@@ -15,7 +15,7 @@ class CreateRegimesTable extends Migration
     {
         Schema::create('regimes', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nom');
+            $table->string('nom')->unique();
             $table->timestamps();
         });
     }
