@@ -13,6 +13,12 @@ git clone git@github.com:BourMel/site_recettes.git
 cd site_recettes
 ```
 
+Copier ensuite le fichier [.env.example](/.env.example) dans [.env](/.env) :
+
+```sh
+cp .env.example .env
+```
+
 Ensuite, il faudra installer les dépendances PHP, avec
 [composer](https://getcomposer.org/), installer les dépendances JavaScript, tel
 que ReactJS par exemple et générer la clé d'encryption :
@@ -23,11 +29,6 @@ npm install && npm run dev
 php artisan key:generate
 ```
 
-Copier ensuite le fichier [.env.example](/.env.example) dans [.env](/.env) :
-
-```sh
-cp .env.example .env
-```
 
 Il faudra ensuite éditer le fichier [.env](/.env), et remplacer cette partie
 par les bonnes informations pour se connecter à la base de données :
