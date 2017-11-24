@@ -13,8 +13,11 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('root');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//CRUD Unités
+Route::get('/unites', 'UniteController@index');
