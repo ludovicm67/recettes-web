@@ -13,6 +13,8 @@ git clone git@github.com:BourMel/site_recettes.git
 cd site_recettes
 ```
 
+## Version manuelle
+
 Copier ensuite le fichier [.env.example](/.env.example) dans [.env](/.env) :
 
 ```sh
@@ -55,3 +57,54 @@ php artisan serve
 ```
 
 et accéder à http://127.0.0.1:8000/ pour voir le résultat !
+
+## Version automatisée
+
+Lancer simplement :
+
+```sh
+make
+```
+
+ou
+
+```sh
+make install
+```
+
+pour lancer l'installation en mode interactif
+
+ou bien
+
+```sh
+make default-install
+```
+
+pour installer avec les paramètres par défaut.
+
+Il est également possible d'initialiser l'installation avec les bons
+paramètres de la manière suivante :
+
+```sh
+./scripts/install.sh database username password connection host port
+```
+
+(les champs non remplis le seront automatiquement avec les valeurs par défaut)
+
+Pour effectuer une mise à jour :
+
+```sh
+make update
+```
+
+ou
+
+```sh
+./scripts/update.sh
+```
+
+et pour lancer le serveur de développement de Laravel :
+
+```sh
+make serve
+```
