@@ -47,7 +47,8 @@ class UniteController extends Controller
      */
     public function show($id)
     {
-        //
+      $unites = Unite::find($id);
+      return view("unites.show")->with(['unites'=>$unites]);;
     }
 
     /**

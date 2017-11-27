@@ -17,7 +17,13 @@ Route::get('/', function () {
 
 Auth::routes();
 
+//authentificated routes
+Route::middleware(['auth'])->group(function () {
+  //
+});
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 //CRUD Unités
-Route::get('/unites', 'UniteController@index');
+Route::get('/unites/', 'UniteController@index')->name('unites');
+Route::get('/unites/{id}/', 'UniteController@show')->where('id', '[0-9]+');;

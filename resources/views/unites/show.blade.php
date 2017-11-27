@@ -8,15 +8,9 @@
                 <div class="panel-heading">Ingrédients</div>
 
                 <div class="panel-body">
-                    @foreach ($unites as $unite)
-                        <p>
-                          <a href={{ route('unites') }}>
-                            {{ $unite->nom }} ({{ $unite->symbole }})
-                          </a>
-                        </p>
-                    @endforeach
+                    <p>{{ $unite->nom }} ({{ $unite->symbole }})</p>
 
-                    <a href={{ route('root') }} >Vers l'accueil</a>
+                    <a href={{ route('unites') }}>Liste des unités</a>
                 </div>
             </div>
         </div>
