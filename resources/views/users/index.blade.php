@@ -14,6 +14,7 @@
                           <p>Administrateur du site</p>
                         @endif
                         <p>{{ $user->pseudo }} : {{ $user->mail }}</p>
+                        <a href={{ route('showUsers', $user->id) }}>Modifier</a>
                     @endforeach
 
                     <a href={{ route('root') }} >Vers l'accueil</a>

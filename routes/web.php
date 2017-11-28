@@ -25,11 +25,13 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/home', 'HomeController@index')->name('home');
 
 //CRUD Unités
-Route::get('/unites', 'UniteController@index')->name('unites');
 Route::get('/unites/{id}', 'UniteController@show')->where('id', '[0-9]+');;
+Route::get('/unites', 'UniteController@index')->name('unites');
 
 //CRUD Ingrédients
 Route::get('/ingredients', 'IngredientController@index')->name('ingredients');
 
 //CRUD Utilisateurs
+Route::get('/users/{id}', 'UserController@show')->name('showUsers');
+Route::put('/users/{id}', 'UserController@update')->name('updateUsers');
 Route::get('/users', 'UserController@index')->name('users');

@@ -16,6 +16,7 @@ html {
 
 body {
   margin: 0;
+  background-image: url('../images/background.jpg');
 }
 
 article,
@@ -8349,4 +8350,3 @@ button.close {
     display: none !important;
   }
 }
-

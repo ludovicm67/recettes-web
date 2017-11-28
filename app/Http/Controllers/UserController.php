@@ -47,7 +47,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+      $user = User::findOrFail($id);
+      return view("users.show")->with(['user'=>$user]);
     }
 
     /**
@@ -70,7 +71,8 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+        $user->update(request()->all());
     }
 
     /**
