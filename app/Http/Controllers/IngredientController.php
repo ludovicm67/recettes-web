@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Unite;
+use App\Ingredient;
 
-class UniteController extends Controller
+class IngredientController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class UniteController extends Controller
      */
     public function index()
     {
-        $unites = Unite::all();
-        return view("unites.index")->with(['unites'=>$unites]);
+      $ingredients = Ingredient::all();
+      return view("ingredients.index")->with(['ingredients'=>$ingredients]);
     }
 
     /**
@@ -47,8 +47,7 @@ class UniteController extends Controller
      */
     public function show($id)
     {
-      $unites = Unite::find($id);
-      return view("unites.show")->with(['unites'=>$unites]);;
+        //
     }
 
     /**

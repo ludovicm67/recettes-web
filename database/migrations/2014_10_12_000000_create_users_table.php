@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('pseudo')->unique()->max(25);
             $table->string('mail')->unique()->email()->max(255);
+            $table->boolean('admin')->default(false);
             $table->string('password');
             $table->string('display_name')->nullable();
             $table->rememberToken();

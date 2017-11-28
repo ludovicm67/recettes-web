@@ -71,23 +71,19 @@
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
+                        <a href="{{ route('login') }}">Se connecter</a>
+                        <a href="{{ route('register') }}">Créer un compte</a>
                     @endauth
+
+                    <!-- <a href="{{ route('unites') }}">Unites</a> -->
+                    <a href="{{ route('ingredients') }}">Ingredients</a>
+                    <a href="{{ route('users') }}">Utilisateurs</a>
                 </div>
             @endif
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    Site de recettes
                 </div>
             </div>
         </div>

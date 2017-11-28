@@ -25,5 +25,11 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/home', 'HomeController@index')->name('home');
 
 //CRUD Unités
-Route::get('/unites/', 'UniteController@index')->name('unites');
-Route::get('/unites/{id}/', 'UniteController@show')->where('id', '[0-9]+');;
+Route::get('/unites', 'UniteController@index')->name('unites');
+Route::get('/unites/{id}', 'UniteController@show')->where('id', '[0-9]+');;
+
+//CRUD Ingrédients
+Route::get('/ingredients', 'IngredientController@index')->name('ingredients');
+
+//CRUD Utilisateurs
+Route::get('/users', 'UserController@index')->name('users');
