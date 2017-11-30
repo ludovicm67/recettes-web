@@ -2379,7 +2379,7 @@
                 "throwable",
                 "whoops"
             ],
-            "time": "2017-11-23 18:22:44"
+            "time": "2017-11-23T18:22:44+00:00"
         },
         {
             "name": "fzaninotto/faker",
@@ -2838,7 +2838,7 @@
                 }
             ],
             "description": "With this component, a library can provide support for annotations via DocBlocks or otherwise retrieve information that is embedded in a DocBlock.",
-            "time": "2017-11-27 17:38:31"
+            "time": "2017-11-27T17:38:31+00:00"
         },
         {
             "name": "phpdocumentor/type-resolver",
@@ -2948,7 +2948,7 @@
                 "spy",
                 "stub"
             ],
-            "time": "2017-11-24 13:59:53"
+            "time": "2017-11-24T13:59:53+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -3012,7 +3012,11 @@
                 "testing",
                 "xunit"
             ],
+<<<<<<< HEAD
             "time": "2017-11-27 09:00:30"
+=======
+            "time": "2017-11-27T09:00:30+00:00"
+>>>>>>> 79d62751e38b50fb4e9b793499780ea155260bb3
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -3059,7 +3063,11 @@
                 "filesystem",
                 "iterator"
             ],
+<<<<<<< HEAD
             "time": "2017-11-27 13:52:08"
+=======
+            "time": "2017-11-27T13:52:08+00:00"
+>>>>>>> 79d62751e38b50fb4e9b793499780ea155260bb3
         },
         {
             "name": "phpunit/php-text-template",
@@ -3198,7 +3206,7 @@
             "keywords": [
                 "tokenizer"
             ],
-            "time": "2017-11-27 05:48:46"
+            "time": "2017-11-27T05:48:46+00:00"
         },
         {
             "name": "phpunit/phpunit",
