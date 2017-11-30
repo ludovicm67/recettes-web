@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Validator;
 
 class UserController extends Controller
 {
@@ -47,8 +48,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-      $user = User::findOrFail($id);
-      return view("users.show")->with(['user'=>$user]);
+        //
     }
 
     /**
@@ -59,7 +59,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+      $user = User::findOrFail($id);
+      return view("users.edit")->with(['user'=>$user]);
     }
 
     /**
@@ -71,8 +72,22 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = User::find($id);
-        $user->update(request()->all());
+      $validator = Validator::make($request->all(), [
+        'mail'       => 'required|email',
+        'pseudo'      => 'required'
+      ]);
+
+      if ($validator->fails()) {
+          return redirect('users/' . $id . '/edit')->withErrors($validator);
+      } else {
+          $user = User::findOrFail($id);
+          $user->pseudo       = $request['pseudo'];
+          $user->mail         = $request['mail'];
+          $user->display_name = $request['display_name'];
+          $user->save();
+
+          return redirect('users');
+      }
     }
 
     /**
@@ -83,6 +98,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
     }
 }

@@ -14,7 +14,19 @@
                           <p>Administrateur du site</p>
                         @endif
                         <p>{{ $user->pseudo }} : {{ $user->mail }}</p>
-                        <a href={{ route('showUsers', $user->id) }}>Modifier</a>
+                        <a href={{ route('users.edit', $user->id) }}>
+                          Modifier
+                        </a>
+
+                        <form class="form-horizontal" method="DELETE" action="{{ route('users.destroy', $user->id) }}">
+                          <div class="form-group">
+                              <div class="col-md-8 col-md-offset-4">
+                                  <button type="submit" class="btn btn-primary">
+                                      Supprimer
+                                  </button>
+                              </div>
+                          </div>
+                        </form>
                     @endforeach
 
                     <a href={{ route('root') }} >Vers l'accueil</a>

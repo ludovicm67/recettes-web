@@ -32,6 +32,9 @@ Route::get('/unites', 'UniteController@index')->name('unites');
 Route::get('/ingredients', 'IngredientController@index')->name('ingredients');
 
 //CRUD Utilisateurs
-Route::get('/users/{id}', 'UserController@show')->name('showUsers');
-Route::put('/users/{id}', 'UserController@update')->name('updateUsers');
-Route::get('/users', 'UserController@index')->name('users');
+ Route::resource('users', 'UserController');
+
+// Route::get('/users/{id}', 'UserController@show')->name('showUser');
+// Route::delete('/users/{id}', 'UserController@destroy')->name('deleteUser'); //?
+// Route::put('/users/{id}', 'UserController@update')->name('updateUser'); //?
+// Route::get('/users', 'UserController@index')->name('users');
