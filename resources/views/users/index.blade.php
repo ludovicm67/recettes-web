@@ -10,26 +10,23 @@
                 <div class="panel-body">
                     @foreach ($users as $user)
                         <h2>{{ $user->display_name }}</h2>
+
                         @if($user->admin)
                           <p>Administrateur du site</p>
                         @endif
-                        <p>{{ $user->pseudo }} : {{ $user->mail }}</p>
-                        <a href={{ route('users.edit', $user->id) }}>
-                          Modifier
-                        </a>
 
-                        <form class="form-horizontal" method="DELETE" action="{{ route('users.destroy', $user->id) }}">
-                          <div class="form-group">
-                              <div class="col-md-8 col-md-offset-4">
-                                  <button type="submit" class="btn btn-primary">
-                                      Supprimer
-                                  </button>
-                              </div>
-                          </div>
-                        </form>
+                        <p>Pseudo : {{ $user->pseudo }}</p>
+                        <p>Adresse email : {{ $user->mail }}</p>
+
+                        <!--Boutons d'action-->
+                        {{ Form::open(array('url' => 'users/' . $user->id, 'class' => 'form-horizontal')) }}
+                            {{ Form::hidden('_method', 'DELETE') }}
+                            <a href={{ route('users.edit', $user->id) }}>
+                              {{ Form::button('Modifier', array('class' => 'btn btn-primary')) }}
+                            </a>
+                            {{ Form::submit('Supprimer', array('class' => 'btn btn-primary')) }}
+                        {{ Form::close() }}
                     @endforeach
-
-                    <a href={{ route('root') }} >Vers l'accueil</a>
                 </div>
             </div>
         </div>
