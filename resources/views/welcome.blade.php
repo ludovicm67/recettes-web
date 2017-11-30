@@ -76,7 +76,7 @@
                     @endauth
 
                     <!-- <a href="{{ route('unites') }}">Unites</a> -->
-                    <a href="{{ route('ingredients') }}">Ingredients</a>
+                    <a href="{{ route('ingredients.index') }}">Ingredients</a>
                     <a href="{{ route('users.index') }}">Utilisateurs</a>
                 </div>
             @endif
