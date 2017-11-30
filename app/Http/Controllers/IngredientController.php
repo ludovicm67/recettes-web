@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Ingredient;
+use Validator;
 
 class IngredientController extends Controller
 {
@@ -58,7 +59,8 @@ class IngredientController extends Controller
      */
     public function edit($id)
     {
-        //
+      $ingredient = Ingredient::findOrFail($id);
+      return view("ingredients.edit")->with(['ingredient'=>$ingredient]);
     }
 
     /**
@@ -70,7 +72,29 @@ class IngredientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $validator = Validator::make($request->all(), [
+        'nom'       => 'required',
+        'calories'  => 'min:0',
+        'lipides'   => 'min:0',
+        'glucides'  => 'min:0',
+        'protides'  => 'min:0',
+        'dispo_par_defaut' => 'boolean'
+      ]);
+
+      if ($validator->fails()) {
+          return redirect('ingredients/' . $id . '/edit')->withErrors($validator);
+      } else {
+          $ingredient = Ingredient::findOrFail($id);
+          $ingredient->nom = $request['nom'];
+          $ingredient->calories = $request['calories'];
+          $ingredient->lipides = $request['lipides'];
+          $ingredient->glucides = $request['glucides'];
+          $ingredient->protides = $request['protides'];
+          $ingredient->dispo_par_defaut = $request['dispo_par_defaut'];
+          $ingredient->save();
+
+          return redirect('ingredients');
+      }
     }
 
     /**
@@ -81,6 +105,8 @@ class IngredientController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $ingredient = Ingredient::find($id);
+      $ingredient->delete();
+      return redirect('ingredients');
     }
 }

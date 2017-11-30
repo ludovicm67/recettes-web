@@ -16,6 +16,16 @@
                         <li>Glucides : {{ $ingredient->glucides }}</li>
                         <li>Protides : {{ $ingredient->protides }}</li>
                       </ul>
+
+                      <!--Boutons d'action-->
+                      {{ Form::open(array('url' => 'ingredients/' . $ingredient->id, 'class' => 'form-horizontal')) }}
+                          {{ Form::hidden('_method', 'DELETE') }}
+                          <a href={{ route('ingredients.edit', $ingredient->id) }}>
+                            {{ Form::button('Modifier', array('class' => 'btn btn-primary')) }}
+                          </a>
+                          {{ Form::submit('Supprimer', array('class' => 'btn btn-primary')) }}
+                      {{ Form::close() }}
+
                     @endforeach
 
                     <a href={{ route('root') }} >Vers l'accueil</a>
