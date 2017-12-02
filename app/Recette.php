@@ -28,7 +28,7 @@ class Recette extends Model
      ],
      'joins' => [
        'ingredients_recette' => ['recettes.id', 'ingredients_recette.id_recettes'],
-       'ingredients' => ['ingredients.id', 'ingredients_recettes.id_ingredients']
+       'ingredients' => ['ingredients_recette.id_ingredients', 'ingredients.id']
      ]
    ];
 
@@ -41,5 +41,12 @@ class Recette extends Model
    * @var string
    */
   protected $table = 'recettes';
+
+  /**
+  * Renvoie les ingrédients utilisés dans la recette
+  */
+  public function ingredients() {
+    //fonction nécessaire pour la recherche avec ingrédients
+  }
 
 }

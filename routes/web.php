@@ -27,7 +27,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 //CRUD
 Route::resource('ingredients', 'IngredientController');
 Route::resource('users', 'UserController');
+Route::resource('recettes', 'RecetteController');
 
 //CRUD Unités
-Route::get('/unites/{id}', 'UniteController@show')->where('id', '[0-9]+');;
-Route::get('/unites', 'UniteController@index')->name('unites');
+// Route::get('/unites/{id}', 'UniteController@show')->where('id', '[0-9]+');;
+// Route::get('/unites', 'UniteController@index')->name('unites');

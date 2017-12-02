@@ -20,7 +20,7 @@ class CreateRecettesTable extends Migration
             $table->integer('difficulte');
             $table->integer('prix');
             $table->integer('nbre_personnes');
-            $table->integer('dureee_totale');
+            $table->integer('duree_totale');
             $table->integer('calories');
             $table->float('lipides');
             $table->float('glucides');
