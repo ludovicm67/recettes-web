@@ -52,4 +52,11 @@ class Ingredient extends Model
     return $this->belongsToMany('App\Categorie', 'categorie_ingredient',
                                 'id_ingredient', 'id_categorie');
   }
+
+  /**
+  * Renvoie l'unité correspondant à cet ingrédient
+  */
+  public function unite() {
+    return $this->belongsTo('App\Unite', 'id_unite');
+  }
 }

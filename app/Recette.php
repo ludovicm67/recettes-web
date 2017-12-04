@@ -47,6 +47,10 @@ class Recette extends Model
   */
   public function ingredients() {
     //fonction nécessaire pour la recherche avec ingrédients
+
+    return $this->belongsToMany('App\Ingredient', 'ingredients_recette',
+                                'id_recettes', 'id_ingredients')
+                                ->withPivot('quantite');
   }
 
 
@@ -55,6 +59,13 @@ class Recette extends Model
   */
   public function utilisateur() {
     return $this->belongsTo('App\User', 'id_user');
+  }
+
+  /**
+  * Renvoie les étapes de la recette
+  */
+  public function etapes() {
+    return $this->hasMany('App\Etape', 'id_recettes')->orderBy('ordre');;
   }
 
 }

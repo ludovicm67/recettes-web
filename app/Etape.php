@@ -13,4 +13,11 @@ class Etape extends Model
    */
   protected $table = 'etapes';
 
+
+  /**
+  * Renvoie le type associé à l'étape
+  */
+  public function type() {
+    return $this->belongsTo('App\Type', 'id_etape_types');
+  }
 }

@@ -12,6 +12,8 @@
                 <div class="panel-body">
 
                   <h3>{{ $recette->nom }}</h3>
+                  <p>{{ $recette->description }}</p>
+
                   <ul>
                     <li>{{ $recette->duree_totale }} minutes</li>
                     <li>Pour {{ $recette->nbre_personnes }} personne(s)</li>
@@ -19,8 +21,23 @@
                     <li>Prix : {{ $recette->prix }}</li>
                   </ul>
 
-                  <p>{{ $recette->description }}</p>
-                  
+                  <p>Ingrédients
+                    <ul>
+                      @foreach ($recette->ingredients as $ingredient)
+                        <li>
+                          {{ $ingredient->nom }} :
+                          {{ $ingredient->pivot->quantite }}
+                          {{ $ingredient->unite->symbole }}
+                        </li>
+                      @endforeach
+                  </ul>
+
+                  @foreach ($recette->etapes as $etape)
+                      <h4>{{ $etape->nom }} ({{ $etape->type->nom }} - {{ $etape->duree }} minute(s))</h4>
+                      <p>{{ $etape->description }}</p>
+                  @endforeach
+
+
                   <p>Apports nutritionnels</p>
                   <ul>
                     <li>Calories : {{ $recette->calories }}</li>
