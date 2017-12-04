@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Re7') }}</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -29,7 +29,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                        {{ config('app.name', 'Re7') }}
                     </a>
                 </div>
 
@@ -41,8 +41,8 @@
                           @if(Auth::user()->isAdmin())
                             <li><a href="{{ route('users.index') }}">Utilisateurs</a></li>
                           @endif
-                          <li><a href="{{ route('ingredients.index') }}">Ingredients</a></li>
                           <li><a href="{{ route('recettes.index') }}">Recettes</a></li>
+                          <li><a href="{{ route('ingredients.index') }}">Ingredients</a></li>
                         @endauth
                     </ul>
 

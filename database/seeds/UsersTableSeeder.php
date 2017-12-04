@@ -18,5 +18,13 @@ class UsersTableSeeder extends Seeder
           'password'      => bcrypt('admin'),
           'display_name'  => 'koacorne'
       ]);
+
+      DB::table('users')->insert([
+          'pseudo'        => 'foobarfoobar',
+          'mail'          => 'foobar@gmail.com',
+          'admin'         => false,
+          'password'      => bcrypt('foobar'),
+          'display_name'  => 'foobarfoobar'
+      ]);
     }
 }

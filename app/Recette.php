@@ -49,4 +49,12 @@ class Recette extends Model
     //fonction nécessaire pour la recherche avec ingrédients
   }
 
+
+  /**
+  * Renvoie l'utilisateur auteur de la recette
+  */
+  public function utilisateur() {
+    return $this->belongsTo('App\User', 'id_user');
+  }
+
 }

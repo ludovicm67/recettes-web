@@ -14,8 +14,8 @@ class UniteController extends Controller
      */
     public function index()
     {
-        $unites = Unite::all();
-        return view("unites.index")->with(['unites'=>$unites]);
+        // $unites = Unite::all();
+        // return view("unites.index")->with(['unites'=>$unites]);
     }
 
     /**
@@ -47,8 +47,8 @@ class UniteController extends Controller
      */
     public function show($id)
     {
-      $unites = Unite::find($id);
-      return view("unites.show")->with(['unites'=>$unites]);;
+      // $unites = Unite::find($id);
+      // return view("unites.show")->with(['unites'=>$unites]);;
     }
 
     /**

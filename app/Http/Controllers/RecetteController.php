@@ -50,7 +50,8 @@ class RecetteController extends Controller
      */
     public function show($id)
     {
-        //
+        $recette = Recette::findOrFail($id);
+        return view("recettes.show")->with(['recette'=>$recette]);
     }
 
     /**
@@ -61,7 +62,7 @@ class RecetteController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**

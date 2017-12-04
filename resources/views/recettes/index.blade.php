@@ -15,7 +15,7 @@
                     {{ Form::close() }}
 
                     @foreach ($recettes as $recette)
-                        <h3>{{ $recette->nom }}</h3>
+                        <h3><a href={{ route('recettes.show', $recette->id)  }}>{{ $recette->nom }}</a></h3>
                         <p>{{ $recette->description }}</p>
                     @endforeach
                 </div>
