@@ -69,16 +69,17 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        @if(Auth::user()->isAdmin())
+                          <a href="{{ route('users.index') }}">Utilisateurs</a>
+                        @endif
+                        <!-- <a href=" url('/home') ">Accueil</a> -->
+                        <!-- <a href="route('unites')">Unites</a> -->
+                        <a href="{{ route('recettes.index') }}">Recettes</a>
+                        <a href="{{ route('ingredients.index') }}">Ingredients</a>
                     @else
                         <a href="{{ route('login') }}">Se connecter</a>
                         <a href="{{ route('register') }}">Créer un compte</a>
                     @endauth
-
-                    <!-- <a href="route('unites')">Unites</a> -->
-                    <a href="{{ route('ingredients.index') }}">Ingredients</a>
-                    <a href="{{ route('users.index') }}">Utilisateurs</a>
-                    <a href="{{ route('recettes.index') }}">Recettes</a>
                 </div>
             @endif
 

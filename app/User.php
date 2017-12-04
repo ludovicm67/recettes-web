@@ -22,7 +22,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'pseudo', 'display_name', 'mail', 'password' 
+        'pseudo', 'display_name', 'mail', 'password'
     ];
 
     /**
@@ -33,6 +33,16 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Check if user is admin.
+     *
+     * @return bool
+     */
+    public function isAdmin()
+    {
+         return $this->admin;
+    }
 
     /**
     * Renvoie les régimes associés à cet utilisateur

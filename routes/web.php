@@ -19,15 +19,20 @@ Auth::routes();
 
 //authentificated routes
 Route::middleware(['auth'])->group(function () {
-  //
+
+  Route::resource('ingredients', 'IngredientController');
+
+  Route::resource('recettes', 'RecetteController');
+
+  //admin routes
+  Route::middleware(['admin'])->group(function () {
+
+    Route::resource('users', 'UserController');
+
+  });
 });
 
-Route::get('/home', 'HomeController@index')->name('home');
-
-//CRUD
-Route::resource('ingredients', 'IngredientController');
-Route::resource('users', 'UserController');
-Route::resource('recettes', 'RecetteController');
+// Route::get('/home', 'HomeController@index')->name('home');
 
 //CRUD Unités
 // Route::get('/unites/{id}', 'UniteController@show')->where('id', '[0-9]+');;
