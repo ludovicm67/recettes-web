@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Recette;
+use App\Ingredient;
 
 class RecetteController extends Controller
 {
@@ -28,7 +29,10 @@ class RecetteController extends Controller
      */
     public function create()
     {
-        //
+        $ingredients = Ingredient::all()->toArray();
+        $ingredients = array_column($ingredients, 'nom', 'id');
+
+        return view("recettes.create")->with(['ingredients' => $ingredients]);
     }
 
     /**
