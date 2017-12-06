@@ -5,10 +5,11 @@
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
       <div class="panel panel-default">
-        <div class="panel-heading">Créer une recette</div>
+        <div class="panel-heading">Modifier une recette</div>
 
         <div class="panel-body">
           {{ Form::open(array('route' => array('recettes.store'))) }}
+
 
             <div class="form-group{{ $errors->has('nom') ? ' has-error' : '' }}">
               <div class="col-md-4">
