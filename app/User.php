@@ -74,4 +74,13 @@ class User extends Authenticatable
       return $this->belongsToMany('App\Ingredient', 'user_achat_ingredient_archive',
                                   'id_user', 'id_ingredient');
     }
+
+    /**
+    * Renvoie les recettes prévues dans le planning de cet utilisateur
+    */
+    public function recettes() {
+      return $this->belongsToMany('App\Recette', 'planning',
+                                  'id_users', 'id_recettes')
+                                  ->withPivot('at');
+    }
 }

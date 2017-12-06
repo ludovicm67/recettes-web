@@ -23,6 +23,7 @@ Route::middleware(['auth'])->group(function () {
   Route::resource('ingredients', 'IngredientController');
 
   Route::resource('recettes', 'RecetteController');
+  Route::get('planning', 'RecetteController@my_planning')->name('recettes.planning');
 
   //admin routes
   Route::middleware(['admin'])->group(function () {
