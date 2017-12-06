@@ -15,7 +15,7 @@ body {
 .homepage_head_container {
   position: absolute;
   text-align: center;
-  bottom: 40px;
+  bottom: 75px;
   left: 0;
   right: 0;
   color: #fff;
@@ -25,5 +25,11 @@ body {
   font-size: 120px;
   text-shadow: 0 0 5px #fff;
   font-weight: bold;
+  margin-bottom: 42px;
+}
 
+.homepage_content {
+  padding-top: 20px;
+  min-height: calc(100vh - 551px);
+  background-color: #f6f6f6;
 }

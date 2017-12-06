@@ -1,5 +1,7 @@
 <?php
 
+use App\Recette;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,7 +14,14 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+  $recettes = Recette::search("")
+    ->with('ingredients')
+    ->orderBy('id', 'DESC')
+    ->get();
+
+  return view("welcome")->with([
+    'recettes' => $recettes
+  ]);
 })->name('root');
 
 Auth::routes();
