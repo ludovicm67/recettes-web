@@ -11,6 +11,13 @@
                     {{ Form::open(array('route' => 'recettes.index', 'method' => 'get')) }}
                       {{ Form::label('recherche', 'Recherche') }}
                       {{ Form::text('recherche', null, array('class' => 'form-control')) }}
+
+                      Classer par :
+                      <label>{{ Form::radio('tri', 'nom', true) }} Nom</label>
+                      <label>{{ Form::radio('tri', 'difficulte') }} Difficulté</label>
+                      <label>{{ Form::radio('tri', 'prix') }} Prix</label>
+                      <label>{{ Form::radio('tri', 'calories') }} Calories</label>
+
                       {{ Form::submit('Rechercher', array('class' => 'btn btn-primary')) }}
                     {{ Form::close() }}
 

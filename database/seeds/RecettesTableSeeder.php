@@ -24,5 +24,33 @@ class RecettesTableSeeder extends Seeder
           'protides'    => '40',
           'id_user'     => '1'
       ]);
+
+      DB::table('recettes')->insert([
+          'nom'         => 'Le vide coûte cher',
+          'description' => 'Une recette vide qui coûte cher mais est très facile à réaliser chez soi.',
+          'difficulte'  => '1',
+          'prix'        => '5',
+          'nbre_personnes' => '4',
+          'duree_totale'=> '0',
+          'calories'    => '0',
+          'lipides'     => '0',
+          'glucides'    => '0',
+          'protides'    => '0',
+          'id_user'     => '1'
+      ]);
+
+      DB::table('recettes')->insert([
+          'nom'         => 'Difficultés, difficultés',
+          'description' => 'Une recette vide d\'une difficulté quasiment insurmontable.',
+          'difficulte'  => '5',
+          'prix'        => '1',
+          'nbre_personnes' => '4',
+          'duree_totale'=> '0',
+          'calories'    => '0',
+          'lipides'     => '0',
+          'glucides'    => '0',
+          'protides'    => '0',
+          'id_user'     => '1'
+      ]);
     }
 }

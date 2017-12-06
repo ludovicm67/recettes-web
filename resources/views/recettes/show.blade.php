@@ -32,6 +32,10 @@
                       @endforeach
                   </ul>
 
+                  @foreach($recette->medias as $media)
+                    <img width=500 src={{ $media->url }} />
+                  @endforeach
+
                   @foreach ($recette->etapes as $etape)
                       <h4>{{ $etape->nom }} ({{ $etape->type->nom }} - {{ $etape->duree }} minute(s))</h4>
                       <p>{{ $etape->description }}</p>

@@ -16,8 +16,11 @@ class RecetteController extends Controller
      */
     public function index(Request $request)
     {
+      if(!$request['tri']) $request['tri']='nom';
+
       $recettes = Recette::search($request['recherche'])
-      // ->with('ingredients') nécessite la fonction 'ingredients' dans le modèle Recette
+      ->with('ingredients')
+      ->orderBy($request['tri'])
       ->get();
       return view("recettes.index")->with(['recettes'=>$recettes]);
     }

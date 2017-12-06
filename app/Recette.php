@@ -32,9 +32,6 @@ class Recette extends Model
      ]
    ];
 
-   //exemple de recherche :
-   //$recettes = Recette::search($query)->with('ingredients')->paginate(20);
-
   /**
    * The table associated with the model.
    *
@@ -46,8 +43,6 @@ class Recette extends Model
   * Renvoie les ingrédients utilisés dans la recette
   */
   public function ingredients() {
-    //fonction nécessaire pour la recherche avec ingrédients
-
     return $this->belongsToMany('App\Ingredient', 'ingredients_recette',
                                 'id_recettes', 'id_ingredients')
                                 ->withPivot('quantite');
@@ -68,4 +63,10 @@ class Recette extends Model
     return $this->hasMany('App\Etape', 'id_recettes')->orderBy('ordre');;
   }
 
+  /**
+  * Renvoie les médias de la recette
+  */
+  public function medias() {
+    return $this->hasMany('App\Media', 'id_recettes');
+  }
 }
