@@ -64,6 +64,10 @@
                                             Créer une recette
                                         </a>
 
+                                        <a href="{{ route('recettes.planning') }}">
+                                            Mon planning
+                                        </a>
+
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

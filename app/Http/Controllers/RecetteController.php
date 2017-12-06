@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 use App\Recette;
 use App\Ingredient;
 
@@ -23,6 +25,20 @@ class RecetteController extends Controller
       ->orderBy($request['tri'])
       ->get();
       return view("recettes.index")->with(['recettes'=>$recettes]);
+    }
+
+    /**
+     * Display the resource for one user.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function my_planning()
+    {
+      $planning = Auth::user()->recettes;
+      // ->where('at', '>=', Carbon::now())
+      // ->where('at', '<=', Carbon::now()->addWeek());
+
+      return view("recettes.planning")->with(['planning'=>$planning]);
     }
 
     /**
