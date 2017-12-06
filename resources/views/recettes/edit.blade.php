@@ -10,7 +10,6 @@
         <div class="panel-body">
           {{ Form::open(array('route' => array('recettes.store'))) }}
 
-
             <div class="form-group{{ $errors->has('nom') ? ' has-error' : '' }}">
               <div class="col-md-4">
               {{ Form::label('nom', 'Nom') }}

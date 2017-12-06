@@ -1,3 +1,29 @@
 body {
   background-image: url('../images/background.jpg');
 }
+
+/* Homepage */
+.homepage_head {
+  background: url(../images/home_bg.jpg);
+  margin-top: -22px;
+  height: 500px;
+  background-size: cover;
+  background-position: center top;
+  position: relative;
+}
+
+.homepage_head_container {
+  position: absolute;
+  text-align: center;
+  bottom: 40px;
+  left: 0;
+  right: 0;
+  color: #fff;
+}
+
+.homepage_head_title {
+  font-size: 120px;
+  text-shadow: 0 0 5px #fff;
+  font-weight: bold;
+
+}
