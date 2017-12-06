@@ -33,6 +33,20 @@
               </li>
             @endforeach
           </ul>
+<div class="input_fields_wrap">
+  <div class="field_to_copy">
+    <input type="text" name="ingredient_id[]">
+    <input type="number" name="ingredient_qte[]" value="1" min="0" step="0.05">
+    <a href="#" class="remove_field">
+      <span class="glyphicon glyphicon-remove"></span>
+    </a>
+  </div>
+  <div>
+    <input type="text" name="ingredient_id[]">
+    <input type="number" name="ingredient_qte[]" value="1" min="0" step="0.05">
+  </div>
+  <button class="add_field_button">Ajouter un ingrédient</button>
+</div>
 
           @foreach($recette->medias as $media)
             <img width="500" src="{{ $media->url }}" alt="Photo recette">

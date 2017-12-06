@@ -10882,7 +10882,7 @@ module.exports = getHostComponentFromComposite;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(128);
-module.exports = __webpack_require__(299);
+module.exports = __webpack_require__(300);
 
 
 /***/ }),
@@ -10905,6 +10905,8 @@ __webpack_require__(129);
  */
 
 __webpack_require__(154);
+
+__webpack_require__(299);
 
 /***/ }),
 /* 129 */
@@ -55050,6 +55052,34 @@ module.exports = ReactDOMInvalidARIAHook;
 
 /***/ }),
 /* 299 */
+/***/ (function(module, exports) {
+
+$(document).ready(function () {
+  var max_fields = 10; // nombre max d'ingrédients
+  var wrapper = $('.input_fields_wrap');
+  var add_button = $('.add_field_button', wrapper);
+  var field_to_copy = $('.field_to_copy', wrapper);
+  var nb_fields = 1; // nombre de champs
+
+  // ajouter un champ
+  $(add_button).click(function (e) {
+    e.preventDefault();
+    if (nb_fields < max_fields) {
+      nb_fields++;
+      field_to_copy.clone().removeClass('field_to_copy').appendTo(wrapper);
+    }
+  });
+
+  // supprimer un champ
+  $(wrapper).on('click', '.remove_field', function (e) {
+    e.preventDefault();
+    $(this).parent('div').remove();
+    nb_fields--;
+  });
+});
+
+/***/ }),
+/* 300 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
