@@ -35,8 +35,10 @@ class RecetteController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function my_planning() {
-    $planning = Auth::user()->recettes;
-    // ->where('at', '>=', Carbon::now())
+    setlocale (LC_TIME, 'fr_FR.utf8','fra');
+
+    $planning = Auth::user()->recettes; //orderBy
+    // ->where('at', '>=', Carbon::now());
     // ->where('at', '<=', Carbon::now()->addWeek());
 
     return view("recettes.planning")->with([
@@ -59,6 +61,16 @@ class RecetteController extends Controller {
   }
 
   /**
+   * Show the form for creating a new relation in 'planning'.
+   *
+   * @return \Illuminate\Http\Response
+   */
+  public function attach_create($recette_id) {
+    $recette = Recette::findOrFail($recette_id);
+    return view("recettes.attach_create")->with('recette', $recette);
+  }
+
+  /**
    * Store a newly created resource in storage.
    *
    * @param  \Illuminate\Http\Request  $request
@@ -66,6 +78,19 @@ class RecetteController extends Controller {
    */
   public function store(Request $request) {
     //
+  }
+
+  /**
+   * Store a newly created relation 'planning' in storage.
+   *
+   * @param  \Illuminate\Http\Request  $request
+   * @return \Illuminate\Http\Response
+   */
+  public function attach(Request $request) {
+    $user = Auth::user();
+    $user->recettes()->attach($request['recette_id'], ['at' => $request['date']]);
+
+    return redirect('/planning');
   }
 
   /**

@@ -32,6 +32,8 @@ Route::middleware(['auth'])->group(function () {
   Route::resource('ingredients', 'IngredientController');
 
   Route::resource('recettes', 'RecetteController');
+  Route::post('planning/{id}/attach', 'RecetteController@attach')->name('recettes.attach');
+  Route::get('planning/{id}/attach', 'RecetteController@attach_create')->name('recettes.attach_create');
   Route::get('planning', 'RecetteController@my_planning')->name('recettes.planning');
 
   //admin routes
