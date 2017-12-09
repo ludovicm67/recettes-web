@@ -7,16 +7,14 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('root');
 
 
-Route::get('/recettes', 'RecetteController@index')->name('recettes.index');
-Route::get('/recettes/{id}', 'RecetteController@show')->name('recettes.show');
 
 
 //authentificated routes
 Route::middleware(['auth'])->group(function () {
 
   // Routes pour les recettes
-  Route::post('/recettes', 'RecetteController@store')->name('recettes.store');
   Route::get('/recettes/create', 'RecetteController@create')->name('recettes.create');
+  Route::post('/recettes', 'RecetteController@store')->name('recettes.store');
   Route::put('/recettes/{id}', 'RecetteController@update')->name('recettes.update');
   Route::delete('/recettes/{id}', 'RecetteController@destroy')->name('recettes.destroy');
   Route::get('/recettes/{id}/edit', 'RecetteController@edit')->name('recettes.edit');
@@ -36,6 +34,8 @@ Route::middleware(['auth'])->group(function () {
   });
 });
 
+Route::get('/recettes', 'RecetteController@index')->name('recettes.index');
+Route::get('/recettes/{id}', 'RecetteController@show')->name('recettes.show');
 
 //CRUD Unités
 // Route::get('/unites/{id}', 'UniteController@show')->where('id', '[0-9]+');;
