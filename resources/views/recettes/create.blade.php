@@ -106,7 +106,26 @@
               </div>
             </div>
 
-            {{ Form::select('ingredients', $ingredients, NULL, array('multiple')) }}
+            <div class="form-group">
+              <div class="input_fields_wrap">
+                <div class="field_to_copy">
+                  <div class="col-md-4">
+                    {{ Form::label('ingredient_id[]', 'Ingrédient') }}
+                  </div>
+                  <div class="col-md-4">
+                    {{ Form::select('ingredient_id[]', $ingredients, NULL, array('class' => 'form-control')) }}
+                  </div>
+                  <div class="col-md-2">
+                    {{ Form::number('ingredient_qte[]', null, array('class' => 'form-control', 'min' => 0, 'step' => 0.05)) }}
+                  </div>
+                  <a href="#" class="remove_field col-md-1">
+                    <span class="glyphicon glyphicon-remove"></span>
+                  </a>
+                </div>
+
+                <button class="add_field_button btn btn-primary">Ajouter un ingrédient</button>
+              </div>
+            </div>
 
 
             <!---valeurs à calculer-->
@@ -127,7 +146,7 @@
               </div>
             </div>
 
-            <div class="form-group{{ $errors->has('display_name') ? ' has-error' : '' }}">
+            <div class="form-group{{ $errors->has('lipides') ? ' has-error' : '' }}">
               <div class="col-md-4">
               {{ Form::label('lipides', 'Lipides') }}
               </div>

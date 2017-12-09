@@ -38,6 +38,7 @@ class Recette extends Model
    * @var string
    */
   protected $table = 'recettes';
+  public $timestamps = false;
 
   /**
   * Renvoie les ingrédients utilisés dans la recette

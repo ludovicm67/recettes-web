@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use Validator;
 use App\Recette;
 use App\Ingredient;
 
@@ -77,7 +78,51 @@ class RecetteController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function store(Request $request) {
-    //
+    // return dd($request->all());
+
+    $validator = Validator::make($request->all(), [
+      'nom'             => 'required',
+      'description'     => 'required',
+      'prix'            => 'min:1|max:5',
+      'difficulte'      => 'min:1|max:5',
+      'nbre_personnes'  => 'min:1',
+      'calories'        => 'min:0|required',
+      'lipides'         => 'min:0|required',
+      'glucides'        => 'min:0|required',
+      'protides'        => 'min:0|required'
+    ]);
+
+    if ($validator->fails()) {
+        return redirect('recettes/create')->withErrors($validator);
+    } else {
+
+      $recette = new Recette;
+
+      $recette->nom = $request->nom;
+      $recette->description = $request->description;
+      $recette->prix = $request->prix;
+      $recette->difficulte = $request->difficulte;
+      $recette->nbre_personnes = $request->nbre_personnes;
+      $recette->calories = $request->calories;
+      $recette->lipides = $request->lipides;
+      $recette->glucides = $request->glucides;
+      $recette->protides = $request->protides;
+
+      $recette->id_user = Auth::user()->id;
+      //calcul des etapes à éditer
+      $recette->duree_totale = 0;
+
+      $recette->save();
+
+      //ajout des ingrédients
+      $nbr_ing = count($request->ingredient_id);
+      for($i=0; $i<$nbr_ing; $i++) {
+        $recette->ingredients()->attach($request->ingredient_id[$i],
+        [
+          'id_recettes' => $recette->id,
+          'quantite' => $request->ingredient_qte[$i]]);
+        }
+    }
   }
 
   /**
