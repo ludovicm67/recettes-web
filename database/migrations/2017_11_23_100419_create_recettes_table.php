@@ -27,7 +27,7 @@ class CreateRecettesTable extends Migration
             $table->float('protides');
             $table->unsignedInteger('id_user');
 
-            $table->foreign('id_user')->references('id')->on('users');
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

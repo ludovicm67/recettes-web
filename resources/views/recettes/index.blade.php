@@ -24,6 +24,14 @@
                     @foreach ($recettes as $recette)
                         <h3><a href={{ route('recettes.show', $recette->id)  }}>{{ $recette->nom }}</a></h3>
                         <p>{{ $recette->description }}</p>
+
+
+                        @if(Auth::user()->isAdmin())
+                          {{ Form::open(array('url' => 'recettes/' . $recette->id, 'class' => 'form-horizontal')) }}
+                              {{ Form::hidden('_method', 'DELETE') }}
+                              {{ Form::submit('Supprimer', array('class' => 'btn btn-primary')) }}
+                          {{ Form::close() }}
+                        @endif
                     @endforeach
                 </div>
             </div>

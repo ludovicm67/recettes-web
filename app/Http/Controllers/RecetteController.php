@@ -133,6 +133,11 @@ class RecetteController extends Controller {
    */
   public function attach(Request $request) {
     $user = Auth::user();
+
+    if($user->recettes->contains($request['recette_id'])) {
+      return redirect('planning');
+    }
+
     $user->recettes()->attach($request['recette_id'], ['at' => $request['date']]);
 
     return redirect('/planning');
@@ -185,6 +190,28 @@ class RecetteController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function destroy($id) {
-    //
+      $recette = Recette::find($id);
+      //on supprime les relations de la recette
+      $recette->ingredients()->detach();
+      //peu importe si la recette fait partie d'un planning utilisateur
+      $recette->plannings()->detach();
+      $recette->delete();
+      return redirect('recettes');
   }
+
+
+  /**
+   * Remove the specified relation from storage.
+   *
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+  public function destroy_planning($id) {
+    $user = Auth::user();
+    $user->recettes()->detach($id);
+
+    return redirect('/planning');
+  }
+
+
 }

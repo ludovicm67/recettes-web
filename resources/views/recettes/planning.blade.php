@@ -12,6 +12,7 @@
 
                         <h3>{{ ucfirst(strftime('%A %e %B %Y', strtotime($recette->pivot->at))) }}</h3>
                         <p><a href={{ route('recettes.show', $recette->id)  }}>{{ $recette->nom }}</a></p>
+
                     @endforeach
                 </div>
             </div>

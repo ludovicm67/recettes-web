@@ -49,6 +49,13 @@ class Recette extends Model
                                 ->withPivot('quantite');
   }
 
+  /**
+  * Renvoie les utilisateurs ayant la recette dans leur planning
+  */
+  public function plannings() {
+    return $this->belongsToMany('App\User', 'planning',
+                                'id_recettes', 'id_utilisateurs');
+  }
 
   /**
   * Renvoie l'utilisateur auteur de la recette

@@ -35,6 +35,7 @@ Route::middleware(['auth'])->group(function () {
   Route::post('planning/{id}/attach', 'RecetteController@attach')->name('recettes.attach');
   Route::get('planning/{id}/attach', 'RecetteController@attach_create')->name('recettes.attach_create');
   Route::get('planning', 'RecetteController@my_planning')->name('recettes.planning');
+  Route::delete('planning/{id}', 'RecetteController@destroy_planning')->name('planning.destroy');
 
   //admin routes
   Route::middleware(['admin'])->group(function () {
