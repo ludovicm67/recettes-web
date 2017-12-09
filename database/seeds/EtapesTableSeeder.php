@@ -37,5 +37,14 @@ class EtapesTableSeeder extends Seeder
           'id_recettes' => 1,
           'id_etape_types' => 1
       ]);
+
+      DB::table('etapes')->insert([
+          'nom'         => 'Manger les spaguetti',
+          'description' => 'Déguster.',
+          'duree'       => 10,
+          'ordre'       => 1,
+          'id_recettes' => 2,
+          'id_etape_types' => 3
+      ]);
     }
 }

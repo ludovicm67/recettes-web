@@ -18,5 +18,9 @@ class EtapesTypesTableSeeder extends Seeder
       DB::table('etape_types')->insert([
           'nom'         => 'Préparation'
       ]);
+
+      DB::table('etape_types')->insert([
+          'nom'         => 'Dressage'
+      ]);
     }
 }

@@ -32,5 +32,38 @@ class IngredientsTableSeeder extends Seeder
           'popularite'      => '5',
           'id_unite'        => '1'
       ]);
+
+      DB::table('ingredients')->insert([
+          'nom'             => 'Nutella',
+          'calories'        => '300',
+          'lipides'         => '0.5',
+          'glucides'        => '0.6',
+          'protides'        => '0.7',
+          'dispo_par_defaut'  => false,
+          'popularite'      => '5',
+          'id_unite'        => '1'
+      ]);
+
+      DB::table('ingredients')->insert([
+          'nom'             => 'Courgette',
+          'calories'        => '300',
+          'lipides'         => '0.5',
+          'glucides'        => '0.6',
+          'protides'        => '0.7',
+          'dispo_par_defaut'  => false,
+          'popularite'      => '5',
+          'id_unite'        => '4'
+      ]);
+
+      DB::table('ingredients')->insert([
+          'nom'             => 'Pommes de terre',
+          'calories'        => '300',
+          'lipides'         => '0.5',
+          'glucides'        => '0.6',
+          'protides'        => '0.7',
+          'dispo_par_defaut'  => false,
+          'popularite'      => '5',
+          'id_unite'        => '4'
+      ]);
     }
 }

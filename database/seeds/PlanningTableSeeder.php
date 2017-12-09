@@ -20,7 +20,7 @@ class PlanningTableSeeder extends Seeder
         DB::table('planning')->insert([
             'at'            => date('Y-m-d', strtotime('+10 days')),
             'id_users'      => 1,
-            'id_recettes'   => 3
+            'id_recettes'   => 2
         ]);
     }
 }

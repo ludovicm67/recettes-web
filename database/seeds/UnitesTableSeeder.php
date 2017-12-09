@@ -20,5 +20,16 @@ class UnitesTableSeeder extends Seeder
           'nom' => 'litre(s)',
           'symbole' => 'L'
       ]);
+
+      DB::table('unites')->insert([
+          'nom' => 'milligramme(s)',
+          'symbole' => 'mg'
+      ]);
+
+      DB::table('unites')->insert([
+          'nom' => 'unité(s)',
+          'symbole' => ''
+      ]);
+
     }
 }
