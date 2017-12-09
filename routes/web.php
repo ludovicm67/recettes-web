@@ -1,37 +1,28 @@
 <?php
 
-use App\Recette;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-Route::get('/', function () {
-  $recettes = Recette::search("")
-    ->with('ingredients')
-    ->orderBy('id', 'DESC')
-    ->get();
-
-  return view("welcome")->with([
-    'recettes' => $recettes
-  ]);
-})->name('root');
-
+// Les routes pour se connecter, s'inscrire, mot de passe perdu, ...
 Auth::routes();
+
+// La page d'accueil
+Route::get('/', 'HomeController@index')->name('root');
+
+
+Route::get('/recettes', 'RecetteController@index')->name('recettes.index');
+Route::get('/recettes/{id}', 'RecetteController@show')->name('recettes.show');
+
 
 //authentificated routes
 Route::middleware(['auth'])->group(function () {
 
+  // Routes pour les recettes
+  Route::post('/recettes', 'RecetteController@store')->name('recettes.store');
+  Route::get('/recettes/create', 'RecetteController@create')->name('recettes.create');
+  Route::put('/recettes/{id}', 'RecetteController@update')->name('recettes.update');
+  Route::delete('/recettes/{id}', 'RecetteController@destroy')->name('recettes.destroy');
+  Route::get('/recettes/{id}/edit', 'RecetteController@edit')->name('recettes.edit');
+
   Route::resource('ingredients', 'IngredientController');
 
-  Route::resource('recettes', 'RecetteController');
   Route::post('planning/{id}/attach', 'RecetteController@attach')->name('recettes.attach');
   Route::get('planning/{id}/attach', 'RecetteController@attach_create')->name('recettes.attach_create');
   Route::get('planning', 'RecetteController@my_planning')->name('recettes.planning');
@@ -45,7 +36,6 @@ Route::middleware(['auth'])->group(function () {
   });
 });
 
-// Route::get('/home', 'HomeController@index')->name('home');
 
 //CRUD Unités
 // Route::get('/unites/{id}', 'UniteController@show')->where('id', '[0-9]+');;

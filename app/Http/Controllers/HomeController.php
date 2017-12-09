@@ -2,27 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Recette;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
-{
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+class HomeController extends Controller {
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        return view('home');
-    }
+  /*
+   * Contenu de la page d'accueil
+   */
+  public function index() {
+    $recettes = Recette::search("")
+      ->with('ingredients')
+      ->orderBy('id', 'DESC')
+      ->get();
+
+    return view("welcome")->with([
+      'recettes' => $recettes
+    ]);
+  }
 }
