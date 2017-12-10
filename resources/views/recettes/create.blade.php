@@ -32,7 +32,7 @@
               </div>
 
               <div class="col-md-6">
-                {{ Form::textarea('description', null, array('class' => 'form-control')) }}
+                {{ Form::textarea('description', null, array('class' => 'form-control', 'style' => 'resize: none;')) }}
 
                 @if ($errors->has('description'))
                   <span class="help-block">
@@ -48,7 +48,7 @@
               </div>
 
               <div class="col-md-6">
-                {{ Form::number('difficulte', null, array('class' => 'form-control')) }}
+                {{ Form::number('difficulte', 1, array('class' => 'form-control', 'min' => 1, 'max' => 5)) }}
 
                 @if ($errors->has('difficulte'))
                   <span class="help-block">
@@ -64,7 +64,7 @@
               </div>
 
               <div class="col-md-6">
-                {{ Form::number('prix', null, array('class' => 'form-control')) }}
+                {{ Form::number('prix', 1, array('class' => 'form-control', 'min' => 1, 'max' => 5)) }}
 
                 @if ($errors->has('prix'))
                   <span class="help-block">
@@ -80,7 +80,7 @@
               </div>
 
               <div class="col-md-6">
-                {{ Form::number('duree_totale', null, array('class' => 'form-control')) }}
+                {{ Form::number('duree_totale', 0, array('class' => 'form-control', 'min' => 0)) }}
 
                 @if ($errors->has('duree_totale'))
                   <span class="help-block">
@@ -96,7 +96,7 @@
               </div>
 
               <div class="col-md-6">
-                {{ Form::number('nbre_personnes', null, array('class' => 'form-control')) }}
+                {{ Form::number('nbre_personnes', 1, array('class' => 'form-control', 'min' => 1)) }}
 
                 @if ($errors->has('nbre_personnes'))
                   <span class="help-block">
@@ -116,13 +116,13 @@
                     {{ Form::select('ingredient_id[]', $ingredients, NULL, array('class' => 'form-control')) }}
                   </div>
                   <div class="col-md-2">
-                    {{ Form::number('ingredient_qte[]', null, array('class' => 'form-control', 'min' => 0, 'step' => 0.05)) }}
+                    {{ Form::number('ingredient_qte[]', 1, array('class' => 'form-control', 'min' => 0, 'step' => 0.05)) }}
                   </div>
                   <a href="#" class="remove_field col-md-1">
                     <span class="glyphicon glyphicon-remove"></span>
                   </a>
                 </div>
-
+                <div class="newzone"></div>
                 <button class="add_field_button btn btn-primary">Ajouter un ingrédient</button>
               </div>
             </div>
@@ -136,7 +136,7 @@
               </div>
 
               <div class="col-md-6">
-                {{ Form::number('calories', null, array('class' => 'form-control')) }}
+                {{ Form::number('calories', 0, array('class' => 'form-control', 'min' => 0)) }}
 
                 @if ($errors->has('calories'))
                   <span class="help-block">
@@ -151,7 +151,7 @@
               {{ Form::label('lipides', 'Lipides') }}
               </div>
               <div class="col-md-6">
-                {{ Form::number('lipides', null, array('class' => 'form-control')) }}
+                {{ Form::number('lipides', 0, array('class' => 'form-control', 'min' => 0)) }}
                 @if ($errors->has('lipides'))
                   <span class="help-block">
                     <strong>{{ $errors->first('lipides') }}</strong>
@@ -165,7 +165,7 @@
               {{ Form::label('glucides', 'Glucides') }}
               </div>
               <div class="col-md-6">
-                {{ Form::number('glucides', null, array('class' => 'form-control')) }}
+                {{ Form::number('glucides', 0, array('class' => 'form-control', 'min' => 0)) }}
                 @if ($errors->has('glucides'))
                   <span class="help-block">
                     <strong>{{ $errors->first('glucides') }}</strong>
@@ -179,7 +179,7 @@
               {{ Form::label('protides', 'Protides') }}
               </div>
               <div class="col-md-6">
-                {{ Form::number('protides', null, array('class' => 'form-control')) }}
+                {{ Form::number('protides', 0, array('class' => 'form-control', 'min' => 0)) }}
                 @if ($errors->has('protides'))
                   <span class="help-block">
                     <strong>{{ $errors->first('protides') }}</strong>
@@ -190,7 +190,7 @@
 
             <div class="form-group">
               <div class="col-md-8 col-md-offset-4">
-                {{ Form::submit('Valider', array('class' => 'btn btn-primary')) }}
+                {{ Form::submit('Créer la nouvelle recette', array('class' => 'btn btn-primary')) }}
               </div>
             </div>
 

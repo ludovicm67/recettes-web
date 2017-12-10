@@ -116,12 +116,13 @@ class RecetteController extends Controller {
 
       //ajout des ingrédients
       $nbr_ing = count($request->ingredient_id);
-      for($i=0; $i<$nbr_ing; $i++) {
-        $recette->ingredients()->attach($request->ingredient_id[$i],
-        [
+      for ($i=0; $i<$nbr_ing; $i++) {
+        $recette->ingredients()->attach($request->ingredient_id[$i], [
           'id_recettes' => $recette->id,
-          'quantite' => $request->ingredient_qte[$i]]);
-        }
+          'quantite' => $request->ingredient_qte[$i]
+        ]);
+      }
+      return redirect('recettes/' . $recette->id);
     }
   }
 
