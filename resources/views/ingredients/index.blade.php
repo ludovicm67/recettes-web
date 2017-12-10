@@ -9,7 +9,7 @@
 
                 <div class="panel-body">
                     @foreach ($ingredients as $ingredient)
-                      <h2>{{$ingredient->nom }}</h2>
+                      <h2><a href="{{ route('ingredients.show', $ingredient->id) }}">{{$ingredient->nom }}</a></h2>
                       <ul>
                         <li>Calories : {{ $ingredient->calories }}</li>
                         <li>Lipides : {{ $ingredient->lipides }}</li>

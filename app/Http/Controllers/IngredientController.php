@@ -6,15 +6,14 @@ use Illuminate\Http\Request;
 use App\Ingredient;
 use Validator;
 
-class IngredientController extends Controller
-{
+class IngredientController extends Controller {
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index() {
       $ingredients = Ingredient::all();
       return view("ingredients.index")->with(['ingredients'=>$ingredients]);
     }
@@ -24,8 +23,7 @@ class IngredientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create() {
         //
     }
 
@@ -35,8 +33,7 @@ class IngredientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         //
     }
 
@@ -46,9 +43,9 @@ class IngredientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
+    public function show($id) {
+      $ingredient = Ingredient::findOrFail($id);
+      return view("ingredients.show")->with(['ingredient' => $ingredient]);
     }
 
     /**
@@ -57,10 +54,9 @@ class IngredientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id) {
       $ingredient = Ingredient::findOrFail($id);
-      return view("ingredients.edit")->with(['ingredient'=>$ingredient]);
+      return view("ingredients.edit")->with(['ingredient' => $ingredient]);
     }
 
     /**
@@ -70,8 +66,7 @@ class IngredientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id) {
       $validator = Validator::make($request->all(), [
         'nom'       => 'required',
         'calories'  => 'min:0',
@@ -103,8 +98,7 @@ class IngredientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
       $ingredient = Ingredient::find($id);
       $ingredient->delete();
       return redirect('ingredients');
