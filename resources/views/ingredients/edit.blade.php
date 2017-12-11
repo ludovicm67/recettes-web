@@ -10,7 +10,6 @@
                 <div class="panel-body">
                   {{ Form::model($ingredient, array('route' => array('ingredients.update', $ingredient->id), 'method' => 'PUT')) }}
 
-
                       <div class="form-group{{ $errors->has('nom') ? ' has-error' : '' }}">
                           <div class="col-md-4">
                             {{ Form::label('nom', 'Nom') }}

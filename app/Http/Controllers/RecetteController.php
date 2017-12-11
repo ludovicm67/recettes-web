@@ -78,8 +78,6 @@ class RecetteController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function store(Request $request) {
-    // return dd($request->all());
-
     $validator = Validator::make($request->all(), [
       'nom'             => 'required',
       'description'     => 'required',
@@ -167,9 +165,11 @@ class RecetteController extends Controller {
     $ingredients = Ingredient::all()->toArray();
     $ingredients = array_column($ingredients, 'nom', 'id');
 
+    $recette = Recette::findOrFail($id);
+
     return view("recettes.edit")->with([
       'ingredients' => $ingredients,
-      'recette_id' => $id
+      'recette' => $recette
     ]);
   }
 
@@ -181,7 +181,35 @@ class RecetteController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function update(Request $request, $id) {
-    //
+    $validator = Validator::make($request->all(), [
+      'nom'             => 'required',
+      'description'     => 'required',
+      'prix'            => 'min:1|max:5',
+      'difficulte'      => 'min:1|max:5',
+      'nbre_personnes'  => 'min:1',
+      'calories'        => 'min:0|required',
+      'lipides'         => 'min:0|required',
+      'glucides'        => 'min:0|required',
+      'protides'        => 'min:0|required'
+    ]);
+
+    if ($validator->fails()) {
+        return redirect('recettes/' . $id . '/edit')->withErrors($validator);
+    } else {
+        $recette = Recette::findOrFail($id);
+        $recette->nom = $request['nom'];
+        $recette->description = $request['description'];
+        $recette->prix = $request['prix'];
+        $recette->difficulte = $request['difficulte'];
+        $recette->nbre_personnes = $request['nbre_personnes'];
+        $recette->calories = $request['calories'];
+        $recette->lipides = $request['lipides'];
+        $recette->glucides = $request['glucides'];
+        $recette->protides = $request['protides'];
+        $recette->save();
+
+        return redirect('recettes');
+    }
   }
 
   /**

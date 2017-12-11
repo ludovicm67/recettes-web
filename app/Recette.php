@@ -68,7 +68,7 @@ class Recette extends Model
   * Renvoie les étapes de la recette
   */
   public function etapes() {
-    return $this->hasMany('App\Etape', 'id_recettes')->orderBy('ordre');;
+    return $this->hasMany('App\Etape', 'id_recettes')->orderBy('ordre');
   }
 
   /**

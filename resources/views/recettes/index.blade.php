@@ -28,6 +28,9 @@
             @if (Auth::check() && Auth::user()->isAdmin())
               {{ Form::open(['url' => 'recettes/' . $recette->id, 'class' => 'form-horizontal']) }}
                 {{ Form::hidden('_method', 'DELETE') }}
+                <a href={{ route('recettes.edit', $recette->id) }}>
+                  {{ Form::button('Modifier', ['class' => 'btn btn-primary']) }}
+                </a>
                 {{ Form::submit('Supprimer', ['class' => 'btn btn-primary']) }}
               {{ Form::close() }}
             @endif
