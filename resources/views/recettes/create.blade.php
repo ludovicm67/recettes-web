@@ -127,6 +127,35 @@
               </div>
             </div>
 
+            <div class="form-group">
+              <div class="input_fields_wrap">
+                <div class="field_to_copy">
+                  <div class="col-md-4">
+                    {{ Form::label('etapes[]', 'Etapes') }}
+                  </div>
+                  <div class="col-md-6">
+                    {{ Form::text('titres[]', NULL, array('class' => 'form-control')) }}
+                  </div>
+                  <div class="col-md-4"></div>
+                  <div class="col-md-6">
+                    {{ Form::textarea('etapes[]', NULL, array('class' => 'form-control')) }}
+                  </div>
+                  <div class="col-md-2">
+                    {{ Form::label('type[]', 'Type') }}
+                    {{ Form::select('type[]', $types, NULL, array('class' => 'form-control')) }}
+                  </div>
+                  <div class="col-md-2">
+                    {{ Form::label('durees[]', 'Durée') }}
+                    {{ Form::number('durees[]', 1, array('class' => 'form-control', 'min' => 1, 'step' => 1)) }}
+                  </div>
+                  <a href="#" class="remove_field col-md-1">
+                    <span class="glyphicon glyphicon-remove"></span>
+                  </a>
+                </div>
+                <div class="newzone"></div>
+                <button class="add_field_button btn btn-primary">Ajouter une étape</button>
+              </div>
+            </div>
 
             <!---valeurs à calculer-->
 

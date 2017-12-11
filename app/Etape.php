@@ -13,6 +13,8 @@ class Etape extends Model
    */
   protected $table = 'etapes';
 
+  public $timestamps = false;
+
 
   /**
   * Renvoie le type associé à l'étape

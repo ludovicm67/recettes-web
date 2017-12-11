@@ -8,6 +8,8 @@ use Carbon\Carbon;
 use Validator;
 use App\Recette;
 use App\Ingredient;
+use App\Etape;
+use App\Type;
 
 class RecetteController extends Controller {
 
@@ -56,8 +58,12 @@ class RecetteController extends Controller {
     $ingredients = Ingredient::all()->toArray();
     $ingredients = array_column($ingredients, 'nom', 'id');
 
+    $types = Type::all()->toArray();
+    $types = array_column($types, 'nom', 'id');
+
     return view("recettes.create")->with([
-      'ingredients' => $ingredients
+      'ingredients' => $ingredients,
+      'types'        => $types
     ]);
   }
 
@@ -78,6 +84,8 @@ class RecetteController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function store(Request $request) {
+    // return dd($request->all());
+
     $validator = Validator::make($request->all(), [
       'nom'             => 'required',
       'description'     => 'required',
@@ -120,6 +128,23 @@ class RecetteController extends Controller {
           'quantite' => $request->ingredient_qte[$i]
         ]);
       }
+
+      //ajout des étapes
+      $nbr_etapes = count($request->etapes);
+      for ($i=0; $i<$nbr_etapes; $i++) {
+
+        $etape = new Etape;
+        $etape->description = $request->etapes[$i];
+        $etape->nom = $request->titres[$i];
+        $etape->duree = $request->durees[$i];
+        $etape->ordre = $i;
+        $etape->id_recettes = $recette->id;
+        $etape->id_etape_types = $request->type[$i];
+        $etape->save();
+
+        // $recette->etapes()->attach($etape->id);
+      }
+
       return redirect('recettes/' . $recette->id);
     }
   }
