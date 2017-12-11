@@ -55,8 +55,8 @@
             <a href="{{ route('recettes.attach_create', $recette->id) }}" class="btn btn-primary">Ajouter cette recette à mon planning</a>
             @if (Auth::user()->isAdmin())
               <a href="{{ route('recettes.edit', $recette->id) }}" class="btn btn-primary">Modifier</a>
-              <a href="{{ route('recettes.edit', $recette->id) }}" class="btn btn-primary">Ajouter des étapes</a>
-              <a href="{{ route('recettes.edit', $recette->id) }}" class="btn btn-primary">Ajouter des ingrédients</a>
+              <!-- <a href="{{ route('recettes.edit', $recette->id) }}" class="btn btn-primary">Ajouter des étapes</a> -->
+              <!-- <a href="{{ route('recettes.edit', $recette->id) }}" class="btn btn-primary">Ajouter des ingrédients</a> -->
             @endif
           @endif
 

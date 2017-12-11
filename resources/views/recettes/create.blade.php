@@ -74,22 +74,6 @@
               </div>
             </div>
 
-            <div class="form-group{{ $errors->has('duree_totale') ? ' has-error' : '' }}">
-              <div class="col-md-4">
-              {{ Form::label('duree_totale', 'Durée totale') }}
-              </div>
-
-              <div class="col-md-6">
-                {{ Form::number('duree_totale', 0, array('class' => 'form-control', 'min' => 0)) }}
-
-                @if ($errors->has('duree_totale'))
-                  <span class="help-block">
-                    <strong>{{ $errors->first('duree_totale') }}</strong>
-                  </span>
-                @endif
-              </div>
-            </div>
-
             <div class="form-group{{ $errors->has('nbre_personnes') ? ' has-error' : '' }}">
               <div class="col-md-4">
               {{ Form::label('nbre_personnes', 'Nombre de personnes') }}
@@ -154,66 +138,6 @@
                 </div>
                 <div class="newzone"></div>
                 <button class="add_field_button btn btn-primary">Ajouter une étape</button>
-              </div>
-            </div>
-
-            <!---valeurs à calculer-->
-
-            <div class="form-group{{ $errors->has('calories') ? ' has-error' : '' }}">
-              <div class="col-md-4">
-              {{ Form::label('calories', 'Calories') }}
-              </div>
-
-              <div class="col-md-6">
-                {{ Form::number('calories', 0, array('class' => 'form-control', 'min' => 0)) }}
-
-                @if ($errors->has('calories'))
-                  <span class="help-block">
-                    <strong>{{ $errors->first('calories') }}</strong>
-                  </span>
-                @endif
-              </div>
-            </div>
-
-            <div class="form-group{{ $errors->has('lipides') ? ' has-error' : '' }}">
-              <div class="col-md-4">
-              {{ Form::label('lipides', 'Lipides') }}
-              </div>
-              <div class="col-md-6">
-                {{ Form::number('lipides', 0, array('class' => 'form-control', 'min' => 0)) }}
-                @if ($errors->has('lipides'))
-                  <span class="help-block">
-                    <strong>{{ $errors->first('lipides') }}</strong>
-                  </span>
-                @endif
-              </div>
-            </div>
-
-            <div class="form-group{{ $errors->has('glucides') ? ' has-error' : '' }}">
-              <div class="col-md-4">
-              {{ Form::label('glucides', 'Glucides') }}
-              </div>
-              <div class="col-md-6">
-                {{ Form::number('glucides', 0, array('class' => 'form-control', 'min' => 0)) }}
-                @if ($errors->has('glucides'))
-                  <span class="help-block">
-                    <strong>{{ $errors->first('glucides') }}</strong>
-                  </span>
-                @endif
-              </div>
-            </div>
-
-            <div class="form-group{{ $errors->has('protides') ? ' has-error' : '' }}">
-              <div class="col-md-4">
-              {{ Form::label('protides', 'Protides') }}
-              </div>
-              <div class="col-md-6">
-                {{ Form::number('protides', 0, array('class' => 'form-control', 'min' => 0)) }}
-                @if ($errors->has('protides'))
-                  <span class="help-block">
-                    <strong>{{ $errors->first('protides') }}</strong>
-                  </span>
-                @endif
               </div>
             </div>
 

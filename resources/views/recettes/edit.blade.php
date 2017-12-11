@@ -106,6 +106,8 @@
               </div>
             </div>
 
+            <!--INGREDIENTS-->
+
             <div class="form-group col-md-12">
               <p>Cette recette contient déjà les ingrédients suivants :</p>
               <ul>
@@ -133,67 +135,6 @@
                 </div>
                 <div class="newzone"></div>
                 <button class="add_field_button btn btn-primary">Ajouter un ingrédient</button>
-              </div>
-            </div>
-
-
-            <!---valeurs à calculer-->
-
-            <div class="form-group{{ $errors->has('calories') ? ' has-error' : '' }}">
-              <div class="col-md-4">
-              {{ Form::label('calories', 'Calories') }}
-              </div>
-
-              <div class="col-md-6">
-                {{ Form::number('calories', 0, array('class' => 'form-control', 'min' => 0)) }}
-
-                @if ($errors->has('calories'))
-                  <span class="help-block">
-                    <strong>{{ $errors->first('calories') }}</strong>
-                  </span>
-                @endif
-              </div>
-            </div>
-
-            <div class="form-group{{ $errors->has('display_name') ? ' has-error' : '' }}">
-              <div class="col-md-4">
-              {{ Form::label('lipides', 'Lipides') }}
-              </div>
-              <div class="col-md-6">
-                {{ Form::number('lipides', 0, array('class' => 'form-control', 'min' => 0)) }}
-                @if ($errors->has('lipides'))
-                  <span class="help-block">
-                    <strong>{{ $errors->first('lipides') }}</strong>
-                  </span>
-                @endif
-              </div>
-            </div>
-
-            <div class="form-group{{ $errors->has('glucides') ? ' has-error' : '' }}">
-              <div class="col-md-4">
-              {{ Form::label('glucides', 'Glucides') }}
-              </div>
-              <div class="col-md-6">
-                {{ Form::number('glucides', 0, array('class' => 'form-control', 'min' => 0)) }}
-                @if ($errors->has('glucides'))
-                  <span class="help-block">
-                    <strong>{{ $errors->first('glucides') }}</strong>
-                  </span>
-                @endif
-              </div>
-            </div>
-
-            <div class="form-group{{ $errors->has('protides') ? ' has-error' : '' }}">
-              <div class="col-md-4">
-              {{ Form::label('protides', 'Protides') }}
-              </div>
-              <div class="col-md-6">
-                {{ Form::number('protides', 0, array('class' => 'form-control', 'min' => 0)) }}
-                @if ($errors->has('protides'))
-                  <span class="help-block">
-                    <strong>{{ $errors->first('protides') }}</strong>
-                  </span>
-                @endif
               </div>
             </div>
 

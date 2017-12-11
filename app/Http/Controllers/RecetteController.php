@@ -84,48 +84,54 @@ class RecetteController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function store(Request $request) {
-    // return dd($request->all());
-
     $validator = Validator::make($request->all(), [
       'nom'             => 'required',
       'description'     => 'required',
-      'prix'            => 'min:1|max:5',
-      'difficulte'      => 'min:1|max:5',
-      'nbre_personnes'  => 'min:1',
-      'calories'        => 'min:0|required',
-      'lipides'         => 'min:0|required',
-      'glucides'        => 'min:0|required',
-      'protides'        => 'min:0|required'
+      'prix'            => 'min:1|max:5|required',
+      'difficulte'      => 'min:1|max:5|required',
+      'nbre_personnes'  => 'min:1|required',
     ]);
 
     if ($validator->fails()) {
         return redirect('recettes/create')->withErrors($validator);
     } else {
-
       $recette = new Recette;
+      $duree_totale = 0;
+      $calories = 0;
+      $glucides = 0;
+      $lipides = 0;
+      $protides = 0;
 
       $recette->nom = $request->nom;
       $recette->description = $request->description;
       $recette->prix = $request->prix;
       $recette->difficulte = $request->difficulte;
       $recette->nbre_personnes = $request->nbre_personnes;
-      $recette->calories = $request->calories;
-      $recette->lipides = $request->lipides;
-      $recette->glucides = $request->glucides;
-      $recette->protides = $request->protides;
 
       $recette->id_user = Auth::user()->id;
-      //calcul des etapes à éditer
-      $recette->duree_totale = 0;
+      $recette->duree_totale = $duree_totale;
+      $recette->calories = $calories;
+      $recette->lipides = $lipides;
+      $recette->glucides = $glucides;
+      $recette->protides = $protides;
 
       $recette->save();
 
       //ajout des ingrédients
       $nbr_ing = count($request->ingredient_id);
       for ($i=0; $i<$nbr_ing; $i++) {
+        $ingredient = Ingredient::find($request->ingredient_id[$i]);
+        $ingredient_qte = $request->ingredient_qte[$i];
+
+        //on suppose que les infos d'un ing. sont stockées pour une qté de 1
+        $calories += ($ingredient->calories * $ingredient_qte)/$recette->nbre_personnes;
+        $glucides += ($ingredient->glucides * $ingredient_qte)/$recette->nbre_personnes;
+        $protides += ($ingredient->protides * $ingredient_qte)/$recette->nbre_personnes;
+        $lipides += ($ingredient->lipides * $ingredient_qte)/$recette->nbre_personnes;
+
         $recette->ingredients()->attach($request->ingredient_id[$i], [
           'id_recettes' => $recette->id,
-          'quantite' => $request->ingredient_qte[$i]
+          'quantite' => $ingredient_qte
         ]);
       }
 
@@ -142,8 +148,15 @@ class RecetteController extends Controller {
         $etape->id_etape_types = $request->type[$i];
         $etape->save();
 
-        // $recette->etapes()->attach($etape->id);
+        $duree_totale += $etape->duree;
       }
+
+      $recette->duree_totale = $duree_totale;
+      $recette->calories = $calories;
+      $recette->lipides = $lipides;
+      $recette->glucides = $glucides;
+      $recette->protides = $protides;
+      $recette->save();
 
       return redirect('recettes/' . $recette->id);
     }
@@ -190,11 +203,15 @@ class RecetteController extends Controller {
     $ingredients = Ingredient::all()->toArray();
     $ingredients = array_column($ingredients, 'nom', 'id');
 
+    $types = Type::all()->toArray();
+    $types = array_column($types, 'nom', 'id');
+
     $recette = Recette::findOrFail($id);
 
     return view("recettes.edit")->with([
       'ingredients' => $ingredients,
-      'recette' => $recette
+      'recette'     => $recette,
+      'types'       => $types
     ]);
   }
 
@@ -211,11 +228,7 @@ class RecetteController extends Controller {
       'description'     => 'required',
       'prix'            => 'min:1|max:5',
       'difficulte'      => 'min:1|max:5',
-      'nbre_personnes'  => 'min:1',
-      'calories'        => 'min:0|required',
-      'lipides'         => 'min:0|required',
-      'glucides'        => 'min:0|required',
-      'protides'        => 'min:0|required'
+      'nbre_personnes'  => 'min:1'
     ]);
 
     if ($validator->fails()) {
@@ -236,10 +249,14 @@ class RecetteController extends Controller {
         //ajout des ingrédients
         $nbr_ing = count($request->ingredient_id);
         for ($i=0; $i<$nbr_ing; $i++) {
-          $recette->ingredients()->attach($request->ingredient_id[$i], [
-            'id_recettes' => $recette->id,
-            'quantite' => $request->ingredient_qte[$i]
-          ]);
+          $exists = $recette->ingredients->contains($request->ingredient_id[$i]);
+
+          if(!$exists) {
+            $recette->ingredients()->attach($request->ingredient_id[$i], [
+              'id_recettes' => $recette->id,
+              'quantite' => $request->ingredient_qte[$i]
+            ]);
+          }
         }
 
         return redirect('recettes');
