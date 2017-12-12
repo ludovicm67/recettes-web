@@ -59,4 +59,13 @@ class Ingredient extends Model
   public function unite() {
     return $this->belongsTo('App\Unite', 'id_unite');
   }
+
+  /**
+  * Renvoie les recettes dans lesquelles l'ingrédient est utilisé
+  */
+  public function recettes() {
+    return $this->belongsToMany('App\Recette', 'ingredients_recette',
+                                'id_ingredients', 'id_recettes')
+                                ->withPivot('quantite');
+  }
 }

@@ -108,14 +108,30 @@
 
             <!--INGREDIENTS-->
 
-            <div class="form-group col-md-12">
-              <p>Cette recette contient déjà les ingrédients suivants :</p>
-              <ul>
-                @foreach ($recette->ingredients as $ingredient)
-                  <li>{{ $ingredient->nom }}</li>
-                @endforeach
-              <ul>
+            @foreach($recette->ingredients as $ingredient)
+            <div class="form-group">
+              <div class="input_fields_wrap">
+                <div>
+                  <div class="col-md-4">
+                    <label for="ingredient_id[]">Ingrédient</label>
+                  </div>
+                  <div class="col-md-4">
+                    <select class="form-control" name="ingredient_id[]">
+                        <option value={{ $ingredient->id }}>{{ $ingredient->nom }}</option>
+                    </select>
+                  </div>
+                  <div class="col-md-2">
+                    <input type="number" class="form-control"
+                    name="ingredient_qte[]" min="1" max="5" step="1"
+                    value={{ $ingredient->pivot->quantite }}>
+                  </div>
+                  <a href="#" class="remove_field col-md-1">
+                    <span class="glyphicon glyphicon-remove"></span>
+                  </a>
+                </div>
+              </div>
             </div>
+            @endforeach
 
             <div class="form-group">
               <div class="input_fields_wrap">

@@ -100,6 +100,7 @@ class IngredientController extends Controller {
      */
     public function destroy($id) {
       $ingredient = Ingredient::find($id);
+      $ingredient->recettes()->detach();
       $ingredient->delete();
       return redirect('ingredients');
     }
