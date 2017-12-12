@@ -18,8 +18,14 @@ class CreatePlanningTable extends Migration
             $table->unsignedInteger('id_users');
             $table->unsignedInteger('id_recettes');
 
-            $table->foreign('id_recettes')->references('id')->on('recettes');
-            $table->foreign('id_users')->references('id')->on('users');
+            $table->foreign('id_recettes')
+                ->references('id')
+                ->on('recettes')
+                ->onDelete('cascade');
+            $table->foreign('id_users')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
             $table->primary(['id_recettes', 'id_users']);
         });
     }

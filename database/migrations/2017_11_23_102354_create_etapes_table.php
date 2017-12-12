@@ -22,7 +22,10 @@ class CreateEtapesTable extends Migration
             $table->unsignedInteger('id_recettes');
             $table->unsignedInteger('id_etape_types');
 
-            $table->foreign('id_recettes')->references('id')->on('recettes');
+            $table->foreign('id_recettes')
+                ->references('id')
+                ->on('recettes')
+                ->onDelete('cascade');
             $table->foreign('id_etape_types')
                 ->references('id')
                 ->on('etape_types');

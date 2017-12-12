@@ -58,6 +58,22 @@
               </div>
             </div>
 
+            <div class="form-group">
+              <div class="col-md-4">
+              {{ Form::label('image', 'Illustration') }}
+              </div>
+
+              <div class="col-md-6">
+                {{ Form::text('image', null, array('class' => 'form-control')) }}
+
+                @if ($errors->has('image'))
+                  <span class="help-block">
+                    <strong>{{ $errors->first('image') }}</strong>
+                  </span>
+                @endif
+              </div>
+            </div>
+
             <div class="form-group{{ $errors->has('prix') ? ' has-error' : '' }}">
               <div class="col-md-4">
               {{ Form::label('prix', 'Prix') }}

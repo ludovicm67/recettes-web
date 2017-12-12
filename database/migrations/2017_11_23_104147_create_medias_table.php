@@ -19,7 +19,10 @@ class CreateMediasTable extends Migration
             $table->unsignedInteger('id_recettes');
             $table->unsignedInteger('id_media_types');
 
-            $table->foreign('id_recettes')->references('id')->on('recettes');
+            $table->foreign('id_recettes')
+                ->references('id')
+                ->on('recettes')
+                ->onDelete('cascade');;
             $table
                 ->foreign('id_media_types')
                 ->references('id')

@@ -12,5 +12,7 @@ class Media extends Model
    * @var string
    */
   protected $table = 'medias';
-  
+  public $timestamps = false;
+
+
 }

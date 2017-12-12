@@ -10,6 +10,7 @@ use App\Recette;
 use App\Ingredient;
 use App\Etape;
 use App\Type;
+use App\Media;
 
 class RecetteController extends Controller {
 
@@ -90,6 +91,7 @@ class RecetteController extends Controller {
       'prix'            => 'min:1|max:5|required',
       'difficulte'      => 'min:1|max:5|required',
       'nbre_personnes'  => 'min:1|required',
+      'image'           => 'url',
     ]);
 
     if ($validator->fails()) {
@@ -137,20 +139,30 @@ class RecetteController extends Controller {
 
       //ajout des étapes
       $nbr_etapes = count($request->etapes);
+
       for ($i=0; $i<$nbr_etapes; $i++) {
+        if($request->etapes[$i] != NULL) {
+          $etape = new Etape;
+          $etape->description = $request->etapes[$i];
+          $etape->nom = $request->titres[$i];
+          $etape->duree = $request->durees[$i];
+          $etape->ordre = $i;
+          $etape->id_recettes = $recette->id;
+          $etape->id_etape_types = $request->type[$i];
+          $etape->save();
 
-        $etape = new Etape;
-        $etape->description = $request->etapes[$i];
-        $etape->nom = $request->titres[$i];
-        $etape->duree = $request->durees[$i];
-        $etape->ordre = $i;
-        $etape->id_recettes = $recette->id;
-        $etape->id_etape_types = $request->type[$i];
-        $etape->save();
-
-        $duree_totale += $etape->duree;
+          $duree_totale += $etape->duree;
+        }
       }
 
+      //ajout de l'image
+      $image = new Media;
+      $image->url = $request->image;
+      $image->id_recettes = $recette->id;
+      $image->id_media_types = 1;
+      $image->save();
+
+      //modification des valeurs calculées
       $recette->duree_totale = $duree_totale;
       $recette->calories = $calories;
       $recette->lipides = $lipides;

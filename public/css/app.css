@@ -8351,13 +8351,15 @@ button.close {
 }
 
 body {
-  background-image: url(/images/background.jpg?f134fd2403529414c5c849626649a17f);
+  background-image: url(/images/home_bg.jpg?aa9ae56d0e180b3b9ff38fb731176696);
+  background-size: cover;
+  background-position: center top;
 }
 
 /* Homepage */
 
 .homepage_head {
-  background: url(/images/home_bg.jpg?53894984f8532e0046f9f17d23822a41);
+  background: url(/images/home_bg.jpg?aa9ae56d0e180b3b9ff38fb731176696);
   margin-top: -22px;
   height: 500px;
   background-size: cover;
