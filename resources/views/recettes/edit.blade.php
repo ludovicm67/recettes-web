@@ -58,6 +58,20 @@
               </div>
             </div>
 
+            <!-- IMAGE -->
+
+            @foreach($recette->medias as $img)
+            <div class="form-group">
+              <div class="col-md-4">
+              {{ Form::label('image', 'Illustration') }}
+              </div>
+
+              <div class="col-md-6">
+                {{ Form::text('image', $img->url, array('class' => 'form-control')) }}
+              </div>
+            </div>
+            @endforeach
+
             <div class="form-group{{ $errors->has('prix') ? ' has-error' : '' }}">
               <div class="col-md-4">
               {{ Form::label('prix', 'Prix') }}
@@ -153,6 +167,78 @@
                 <button class="add_field_button btn btn-primary">Ajouter un ingrédient</button>
               </div>
             </div>
+
+            <!--ETAPES-->
+
+            @foreach($recette->etapes as $etape)
+            <div class="form-group">
+              <div class="input_fields_wrap">
+                <div class="field_to_copy">
+                  <div class="col-md-4">
+                    <label for="etapes_new[]">Etapes</label>
+                  </div>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control"
+                    name="titres[]" value="{{ $etape->nom }}">
+                  </div>
+                  <div class="col-md-4"></div>
+                  <div class="col-md-6">
+                    <textarea class="form-control" name="etapes_new[]">{{ $etape->description }}</textarea>
+                  </div>
+                  <div class="col-md-4">
+                    <label for="type[]"> - Type</label>
+                  </div>
+                  <div class="col-md-6">
+                    {{ Form::select('type[]', $types, $etape->id_etape_types, array('class' => 'form-control')) }}
+                  </div>
+                  <div class="col-md-4">
+                    {{ Form::label('durees[]', ' - Durée') }}
+                  </div>
+                  <div class="col-md-6">
+                    {{ Form::number('durees[]', 1, array('class' => 'form-control', 'min' => 1, 'step' => 1)) }}
+                  </div>
+                  <a href="#" class="remove_field col-md-1">
+                    <span class="glyphicon glyphicon-remove"></span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            @endforeach
+
+            <div class="form-group">
+              <div class="input_fields_wrap">
+                <div class="field_to_copy">
+                  <div class="col-md-4">
+                    {{ Form::label('etapes_new[]', 'Etapes') }}
+                  </div>
+                  <div class="col-md-6">
+                    {{ Form::text('titres[]', NULL, array('class' => 'form-control')) }}
+                  </div>
+                  <div class="col-md-4"></div>
+                  <div class="col-md-6">
+                    {{ Form::textarea('etapes_new[]', NULL, array('class' => 'form-control')) }}
+                  </div>
+                  <div class="col-md-4">
+                    {{ Form::label('type[]', ' - Type') }}
+                  </div>
+                  <div class="col-md-6">
+                    {{ Form::select('type[]', $types, NULL, array('class' => 'form-control')) }}
+                  </div>
+                  <div class="col-md-4">
+                    {{ Form::label('durees[]', ' - Durée') }}
+                  </div>
+                  <div class="col-md-6">
+                    {{ Form::number('durees[]', 1, array('class' => 'form-control', 'min' => 1, 'step' => 1)) }}
+                  </div>
+                  <a href="#" class="remove_field col-md-1">
+                    <span class="glyphicon glyphicon-remove"></span>
+                  </a>
+                </div>
+                <div class="newzone"></div>
+                <button class="add_field_button btn btn-primary">Ajouter une étape</button>
+              </div>
+            </div>
+
 
             <div class="form-group">
               <div class="col-md-8 col-md-offset-4">

@@ -33,7 +33,7 @@
           @foreach ($recettes as $recette)
             <div class="col-sm-6 col-md-4">
               <div class="thumbnail">
-                <img src="https://via.placeholder.com/350x250" alt="recette">
+                <img src="{{ $recette->medias->first()->url }}" alt="recette">
                 <div class="caption">
                   <h3>{{ $recette->nom }}</h3>
                   <p>{{ $recette->description }}</p>

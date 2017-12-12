@@ -240,7 +240,8 @@ class RecetteController extends Controller {
       'description'     => 'required',
       'prix'            => 'min:1|max:5',
       'difficulte'      => 'min:1|max:5',
-      'nbre_personnes'  => 'min:1'
+      'nbre_personnes'  => 'min:1',
+      'image'           => 'url'
     ]);
 
     if ($validator->fails()) {
@@ -252,61 +253,67 @@ class RecetteController extends Controller {
         $recette->prix = $request['prix'];
         $recette->difficulte = $request['difficulte'];
         $recette->nbre_personnes = $request['nbre_personnes'];
-        $recette->calories = $request['calories'];
-        $recette->lipides = $request['lipides'];
-        $recette->glucides = $request['glucides'];
-        $recette->protides = $request['protides'];
+        $recette->calories = 0;
+        $recette->lipides = 0;
+        $recette->glucides = 0;
+        $recette->protides = 0;
+        $recette->duree_totale = 0;
         $recette->save();
 
         $recette->ingredients()->detach();
         //ajout des ingrédients
         $nbr_ing = count($request->ingredient_id);
         for ($i=0; $i<$nbr_ing; $i++) {
-          $ingredient = Ingredient::find($request->ingredient_id[$i]);
-          $ingredient_qte = $request->ingredient_qte[$i];
+          //avoid duplicates entries
+          $exists = $recette->ingredients()
+              ->where('id_ingredients', $request->ingredient_id[$i])
+              ->exists();
 
-          //on suppose que les infos d'un ing. sont stockées pour une qté de 1
-          $recette->calories += ($ingredient->calories * $ingredient_qte)/$recette->nbre_personnes;
-          $recette->glucides += ($ingredient->glucides * $ingredient_qte)/$recette->nbre_personnes;
-          $recette->protides += ($ingredient->protides * $ingredient_qte)/$recette->nbre_personnes;
-          $recette->lipides += ($ingredient->lipides * $ingredient_qte)/$recette->nbre_personnes;
+          if(!$exists) {
+            $ingredient = Ingredient::find($request->ingredient_id[$i]);
+            $ingredient_qte = $request->ingredient_qte[$i];
 
-          $recette->ingredients()->attach($request->ingredient_id[$i], [
-            'id_recettes' => $recette->id,
-            'quantite' => $ingredient_qte
-          ]);
+            //on suppose que les infos d'un ing. sont stockées pour une qté de 1
+            $recette->calories += ($ingredient->calories * $ingredient_qte)/$recette->nbre_personnes;
+            $recette->glucides += ($ingredient->glucides * $ingredient_qte)/$recette->nbre_personnes;
+            $recette->protides += ($ingredient->protides * $ingredient_qte)/$recette->nbre_personnes;
+            $recette->lipides += ($ingredient->lipides * $ingredient_qte)/$recette->nbre_personnes;
+
+            $recette->ingredients()->attach($request->ingredient_id[$i], [
+              'id_recettes' => $recette->id,
+              'quantite' => $ingredient_qte
+            ]);
+          }
         }
 
+        Etape::where('id_recettes', $recette->id)->delete();
+        //ajout des étapes
+        $nbr_etapes = count($request->etapes_new);
+
+        for ($i=0; $i<$nbr_etapes; $i++) {
+          if($request->etapes_new[$i] != NULL) {
+            $etape = new Etape;
+            $etape->description = $request->etapes_new[$i];
+            $etape->nom = $request->titres[$i];
+            $etape->duree = $request->durees[$i];
+            $etape->ordre = $i;
+            $etape->id_recettes = $recette->id;
+            $etape->id_etape_types = $request->type[$i];
+            $etape->save();
+
+            $recette->duree_totale += $etape->duree;
+          }
+        }
+
+        Media::where('id_recettes', $recette->id)->delete();
+        //ajout de l'image
+        $image = new Media;
+        $image->url = $request->image;
+        $image->id_recettes = $recette->id;
+        $image->id_media_types = 1;
+        $image->save();
+
         $recette->save();
-
-        // //ajout des étapes
-        // $nbr_etapes = count($request->etapes);
-        //
-        // for ($i=0; $i<$nbr_etapes; $i++) {
-        //   if($request->etapes[$i] != NULL) {
-        //     $etape = new Etape;
-        //     $etape->description = $request->etapes[$i];
-        //     $etape->nom = $request->titres[$i];
-        //     $etape->duree = $request->durees[$i];
-        //     $etape->ordre = $i;
-        //     $etape->id_recettes = $recette->id;
-        //     $etape->id_etape_types = $request->type[$i];
-        //     $etape->save();
-        //
-        //     $duree_totale += $etape->duree;
-        //   }
-        // }
-        //
-        // //ajout de l'image
-        // $image = new Media;
-        // $image->url = $request->image;
-        // $image->id_recettes = $recette->id;
-        // $image->id_media_types = 1;
-        // $image->save();
-
-        // modification des valeurs calculées
-        // $recette->duree_totale = $duree_totale;
-        // $recette->save();
 
         return redirect('recettes');
     }
