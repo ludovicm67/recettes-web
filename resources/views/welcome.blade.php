@@ -33,7 +33,9 @@
           @foreach ($recettes as $recette)
             <div class="col-sm-6 col-md-4">
               <div class="thumbnail">
-                <img src="{{ $recette->medias->first()->url }}" alt="recette">
+                @if ($recette->medias->first())
+                  <img src="{{ $recette->medias->first()->url }}" alt="recette">
+                @endif
                 <div class="caption">
                   <h3>{{ $recette->nom }}</h3>
                   <p>{{ $recette->description }}</p>
