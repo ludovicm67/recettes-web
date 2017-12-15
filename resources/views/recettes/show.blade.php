@@ -3,7 +3,37 @@
 @section('content')
 <div class="container">
   <div class="row">
-    <div class="col-md-8 col-md-offset-2">
+    <div class="col-md-4">
+      @if ($recette->ingredients->count() > 0)
+      <div class="panel panel-default">
+        <div class="panel-heading">Ingrédients</div>
+        <div class="panel-body">
+          <ul>
+          @foreach ($recette->ingredients as $ingredient)
+            <li>
+              {{ $ingredient->nom }} :
+              {{ $ingredient->pivot->quantite }}
+              {{ $ingredient->unite->symbole }}
+            </li>
+          @endforeach
+          </ul>
+        </div>
+      </div>
+      @endif
+
+       <div class="panel panel-default">
+        <div class="panel-heading">Apports nutritionnels</div>
+        <div class="panel-body">
+          <ul>
+            <li>Calories : {{ $recette->calories }}</li>
+            <li>Lipides : {{ $recette->lipides }}</li>
+            <li>Glucides : {{ $recette->glucides }}</li>
+            <li>Protides : {{ $recette->protides }}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8">
       <div class="panel panel-default">
         <div class="panel-heading">
           <strong>{{ $recette->nom }}</strong>
@@ -23,33 +53,14 @@
             <li>Prix : {{ $recette->prix }}</li>
           </ul>
 
-          <p>Ingrédients
-          <ul>
-            @foreach ($recette->ingredients as $ingredient)
-              <li>
-                {{ $ingredient->nom }} :
-                {{ $ingredient->pivot->quantite }}
-                {{ $ingredient->unite->symbole }}
-              </li>
-            @endforeach
-          </ul>
-
           @foreach($recette->medias as $media)
-            <img width="500" src="{{ $media->url }}" alt="Photo recette">
+            <img style="max-width: 100%; max-height: 250px;" src="{{ $media->url }}" alt="Photo recette">
           @endforeach
 
           @foreach ($recette->etapes as $etape)
-            <h4>{{ $etape->nom }} ({{ $etape->type->nom }} - {{ $etape->duree }} minute(s))</h4>
-            <p>{{ $etape->description }}</p>
+            <h4 class="step-title">{{ $etape->nom }} ({{ $etape->type->nom }} - {{ $etape->duree }} minute(s))</h4>
+            <p class="step-desc">{{ $etape->description }}</p>
           @endforeach
-
-          <p>Apports nutritionnels</p>
-          <ul>
-            <li>Calories : {{ $recette->calories }}</li>
-            <li>Lipides : {{ $recette->lipides }}</li>
-            <li>Glucides : {{ $recette->glucides }}</li>
-            <li>Protides : {{ $recette->protides }}</li>
-          </ul>
 
           @if (Auth::check())
             <a href="{{ route('recettes.attach_create', $recette->id) }}" class="btn btn-primary">Ajouter cette recette à mon planning</a>
