@@ -4,6 +4,7 @@ Site de recettes de cuisine
 Projet réalisé par Méline Bour-Lang et Ludovic Muller dans le cadre de
 l'UE *bases de données et programmation web* du semestre 5.
 
+
 # Contraintes technologiques
 
 Le projet nécessite une version de PHP supérieure ou égale à 7.0.0 et MySQL.
@@ -84,6 +85,7 @@ make serve
 
 et accéder à http://127.0.0.1:8000/ pour voir le résultat !
 
+
 ## Version manuelle
 
 Copier ensuite le fichier [.env.example](/.env.example) dans *.env* :
@@ -94,14 +96,13 @@ cp .env.example .env
 
 Ensuite, il faudra installer les dépendances PHP, avec
 [composer](https://getcomposer.org/), installer les dépendances JavaScript, tel
-que ReactJS par exemple et générer la clé d'encryption :
+que jQuery par exemple et générer la clé de chiffrement :
 
 ```sh
 composer install
 npm install && npm run dev
 php artisan key:generate
 ```
-
 
 Il faudra ensuite éditer le fichier *.env*, et remplacer cette partie
 par les bonnes informations pour se connecter à la base de données :
@@ -128,6 +129,7 @@ php artisan serve
 ```
 
 et accéder à http://127.0.0.1:8000/ pour voir le résultat !
+
 
 ## Installation des données de test
 
