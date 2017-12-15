@@ -4,6 +4,17 @@ Site de recettes de cuisine
 Projet réalisé par Méline Bour-Lang et Ludovic Muller dans le cadre de
 l'UE *bases de données et programmation web* du semestre 5.
 
+# Contraintes technologiques
+
+Le projet nécessite une version de PHP supérieure ou égale à 7.0.0 et MySQL.
+
+Pour compiler les assets, installer les dépendances, il faudra également avoir :
+
+  - `node` et `npm` : https://nodejs.org/en/
+  - `yarn` : https://yarnpkg.com/lang/en/
+  - `composer` : https://getcomposer.org/
+
+
 # Mise en route
 
 Il faudra tout d'abord récupérer le dépôt et se rendre dans le dossier :
@@ -13,52 +24,14 @@ git clone git@github.com:BourMel/site_recettes.git
 cd site_recettes
 ```
 
-## Version manuelle
+Assurez-vous d'avoir une base de données MySQL existante.
 
-Copier ensuite le fichier [.env.example](/.env.example) dans [.env](/.env) :
-
-```sh
-cp .env.example .env
-```
-
-Ensuite, il faudra installer les dépendances PHP, avec
-[composer](https://getcomposer.org/), installer les dépendances JavaScript, tel
-que ReactJS par exemple et générer la clé d'encryption :
-
-```sh
-composer install
-npm install && npm run dev
-php artisan key:generate
-```
-
-
-Il faudra ensuite éditer le fichier [.env](/.env), et remplacer cette partie
-par les bonnes informations pour se connecter à la base de données :
-
-```
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=homestead
-DB_USERNAME=homestead
-DB_PASSWORD=secret
-```
-
-Puis, lancer les différentes migrations avec :
-
-```sh
-php artisan migrate
-```
-
-et lancer le serveur de développement avec :
-
-```sh
-php artisan serve
-```
-
-et accéder à http://127.0.0.1:8000/ pour voir le résultat !
 
 ## Version automatisée
+
+Pour gagner du temps lors des déploiements, nous avons créé quelques scripts
+shell; du coup si vous n'êtes pas sur un environnement UNIX rendez-vous
+directement dans la partie suivante pour la version manuelle.
 
 Lancer simplement :
 
@@ -108,3 +81,59 @@ et pour lancer le serveur de développement de Laravel :
 ```sh
 make serve
 ```
+
+et accéder à http://127.0.0.1:8000/ pour voir le résultat !
+
+## Version manuelle
+
+Copier ensuite le fichier [.env.example](/.env.example) dans *.env* :
+
+```sh
+cp .env.example .env
+```
+
+Ensuite, il faudra installer les dépendances PHP, avec
+[composer](https://getcomposer.org/), installer les dépendances JavaScript, tel
+que ReactJS par exemple et générer la clé d'encryption :
+
+```sh
+composer install
+npm install && npm run dev
+php artisan key:generate
+```
+
+
+Il faudra ensuite éditer le fichier *.env*, et remplacer cette partie
+par les bonnes informations pour se connecter à la base de données :
+
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=homestead
+DB_USERNAME=homestead
+DB_PASSWORD=secret
+```
+
+Puis, lancer les différentes migrations avec :
+
+```sh
+php artisan migrate
+```
+
+et lancer le serveur de développement avec :
+
+```sh
+php artisan serve
+```
+
+et accéder à http://127.0.0.1:8000/ pour voir le résultat !
+
+## Installation des données de test
+
+```sh
+php artisan migrate:refresh --seed
+```
+
+(la création du compte administrateur se fait à ce moment; les informations de
+connexion à ce compte ont été renseignées dans le rapport).
