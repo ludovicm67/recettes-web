@@ -26,6 +26,7 @@ class RecetteController extends Controller {
     $recettes = Recette::search($request['recherche'])
       ->with('ingredients')
       ->orderBy($request['tri'])
+      ->distinct()
       ->get();
 
     return view("recettes.index")->with([
