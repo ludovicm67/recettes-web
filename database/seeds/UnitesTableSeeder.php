@@ -31,5 +31,10 @@ class UnitesTableSeeder extends Seeder
           'symbole' => ''
       ]);
 
+      DB::table('unites')->insert([
+          'nom' => 'cuillère(s) à soupe',
+          'symbole' => 'c. à s.'
+      ]);
+
     }
 }

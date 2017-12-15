@@ -12,7 +12,7 @@ class IngredientsTableSeeder extends Seeder
     public function run()
     {
       DB::table('ingredients')->insert([
-          'nom'             => 'sel',
+          'nom'             => 'Sel',
           'calories'        => '1',
           'lipides'         => '0.1',
           'glucides'        => '0.2',
@@ -23,14 +23,14 @@ class IngredientsTableSeeder extends Seeder
       ]);
 
       DB::table('ingredients')->insert([
-          'nom'             => 'tomate',
+          'nom'             => 'Tomate',
           'calories'        => '50',
           'lipides'         => '0.5',
           'glucides'        => '0.6',
           'protides'        => '0.7',
           'dispo_par_defaut'  => false,
           'popularite'      => '5',
-          'id_unite'        => '1'
+          'id_unite'        => '4'
       ]);
 
       DB::table('ingredients')->insert([
@@ -41,7 +41,7 @@ class IngredientsTableSeeder extends Seeder
           'protides'        => '0.7',
           'dispo_par_defaut'  => false,
           'popularite'      => '5',
-          'id_unite'        => '1'
+          'id_unite'        => '5'
       ]);
 
       DB::table('ingredients')->insert([
@@ -64,6 +64,49 @@ class IngredientsTableSeeder extends Seeder
           'dispo_par_defaut'  => false,
           'popularite'      => '5',
           'id_unite'        => '4'
+      ]);
+
+      DB::table('ingredients')->insert([
+          'nom'             => 'Chocolat',
+          'calories'        => '30',
+          'lipides'         => '0.5',
+          'glucides'        => '0.6',
+          'protides'        => '0.7',
+          'dispo_par_defaut'  => false,
+          'popularite'      => '5',
+          'id_unite'        => '1'
+      ]);
+
+      DB::table('ingredients')->insert([
+          'nom'             => 'Avocat',
+          'calories'        => '30',
+          'lipides'         => '0.5',
+          'glucides'        => '0.6',
+          'protides'        => '0.7',
+          'dispo_par_defaut'  => false,
+          'popularite'      => '5',
+          'id_unite'        => '4'
+      ]);
+
+      DB::table('ingredients')->insert([
+          'nom'             => 'Maïs',
+          'calories'        => '20',
+          'lipides'         => '0.5',
+          'glucides'        => '0.6',
+          'protides'        => '0.7',
+          'dispo_par_defaut'  => false,
+          'popularite'      => '5',
+          'id_unite'        => '1'
+      ]);
+      DB::table('ingredients')->insert([
+          'nom'             => 'Farine',
+          'calories'        => '20',
+          'lipides'         => '0.5',
+          'glucides'        => '0.6',
+          'protides'        => '0.7',
+          'dispo_par_defaut'  => false,
+          'popularite'      => '5',
+          'id_unite'        => '1'
       ]);
     }
 }

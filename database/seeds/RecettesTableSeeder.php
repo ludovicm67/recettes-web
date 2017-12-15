@@ -12,8 +12,8 @@ class RecettesTableSeeder extends Seeder
     public function run()
     {
       DB::table('recettes')->insert([
-          'nom'         => 'Quelque chose de comestible',
-          'description' => 'Un truc à manger, quoi. On sait pas quoi, on veut pas savoir.',
+          'nom'         => 'Ratatouille',
+          'description' => 'Plein de légumes !',
           'difficulte'  => '5',
           'prix'        => '1',
           'nbre_personnes' => '4',
@@ -26,8 +26,8 @@ class RecettesTableSeeder extends Seeder
       ]);
 
       DB::table('recettes')->insert([
-          'nom'         => 'Spaguetti aux courgettes',
-          'description' => 'Des spaguetti. Aux courgettes',
+          'nom'         => 'Spaghetti',
+          'description' => 'Des spaghetti.',
           'difficulte'  => '2',
           'prix'        => '4',
           'nbre_personnes' => '1',
@@ -37,6 +37,20 @@ class RecettesTableSeeder extends Seeder
           'glucides'    => '20',
           'protides'    => '20',
           'id_user'     => '3'
+      ]);
+
+      DB::table('recettes')->insert([
+          'nom'         => 'Bredele',
+          'description' => 'Parce que le respect.',
+          'difficulte'  => '2',
+          'prix'        => '4',
+          'nbre_personnes' => '1',
+          'duree_totale'=> '30',
+          'calories'    => '350',
+          'lipides'     => '40',
+          'glucides'    => '20',
+          'protides'    => '20',
+          'id_user'     => '1'
       ]);
 
     }
