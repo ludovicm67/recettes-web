@@ -11,7 +11,7 @@
           <ul>
           @foreach ($recette->ingredients as $ingredient)
             <li>
-              {{ $ingredient->nom }} :
+              <a href={{ route('ingredients.show', $ingredient->id) }}>{{ $ingredient->nom }}</a> :
               {{ $ingredient->pivot->quantite }}
               {{ $ingredient->unite->symbole }}
             </li>

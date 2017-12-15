@@ -6,7 +6,6 @@
     <div class="col-md-8 col-md-offset-2">
       <div class="panel panel-default">
         <div class="panel-heading">Ingrédient "{{ $ingredient->nom }}"</div>
-
         <div class="panel-body">
           <p>Le <strong>{{ $ingredient->nom }}</strong> est un ingrédient qui possède
             <strong>{{ $ingredient->calories }}</strong> calories,
@@ -14,6 +13,7 @@
             <strong>{{ $ingredient->glucides }}</strong> glucides et
             <strong>{{ $ingredient->protides }}</strong> protides.
           </p>
+          <a href="{{ route('recettes.index') }}?recherche={{ $ingredient->nom }}" class="btn btn-primary">Voir la liste des recettes qui utilisent cet ingrédient</a>
         </div>
       </div>
     </div>

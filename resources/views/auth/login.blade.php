@@ -8,9 +8,6 @@
                 <div class="panel-heading">Se connecter</div>
 
                 <div class="panel-body">
-                    <p>
-                      Essayez avec <code>koacorne@gmail.com</code> / <code>admin</code> pour avoir accès à un compte administrateur
-                    </p>
                     <form class="form-horizontal" method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
 
