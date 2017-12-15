@@ -16,7 +16,7 @@ git pull
 
 # update dependencies
 composer install
-yarn && yarn run dev
+yarn && yarn run production
 
 # make all new migrations (can take a while)
 php artisan migrate
