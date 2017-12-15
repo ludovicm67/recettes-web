@@ -48,22 +48,22 @@
       </div>
       <div class="col-md-4">
         <div class="panel panel-default">
-          <div class="panel-heading">Ingrédients les + populaires</div>
+          <div class="panel-heading">Les 5 derniers ingrédients ajoutés</div>
           <div class="panel-body">
             <ul>
-              <li>Ingrédient 1</li>
-              <li>Ingrédient 2</li>
-              <li>Ingrédient 3</li>
+              @foreach ($ingredients as $ingredient)
+                <li><a href="{{ route('ingredients.show', $ingredient->id) }}">{{ $ingredient->nom }}</a></li>
+              @endforeach
             </ul>
           </div>
         </div>
         <div class="panel panel-default">
-          <div class="panel-heading">Les meilleurs contributeurs</div>
+          <div class="panel-heading">Les nouveaux arrivants :</div>
           <div class="panel-body">
             <ul>
-              <li>Utilisateur 1</li>
-              <li>Utilisateur 2</li>
-              <li>Utilisateur 3</li>
+              @foreach ($users as $user)
+                <li>{{ $user->display_name }}</li>
+              @endforeach
             </ul>
           </div>
         </div>

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Ingredient;
 use App\Recette;
+use App\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller {
@@ -16,8 +18,13 @@ class HomeController extends Controller {
       ->orderBy('id', 'DESC')
       ->get();
 
+    $ingredients = Ingredient::orderBy('id', 'DESC')->take(5)->get();
+    $users = User::orderBy('id', 'DESC')->take(5)->get();
+
     return view("welcome")->with([
-      'recettes' => $recettes
+      'recettes' => $recettes,
+      'ingredients' => $ingredients,
+      'users' => $users
     ]);
   }
 }
