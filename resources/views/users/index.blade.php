@@ -24,7 +24,9 @@
                             <a href={{ route('users.edit', $user->id) }}>
                               {{ Form::button('Modifier', array('class' => 'btn btn-primary')) }}
                             </a>
+                            @if(!$user->admin)
                             {{ Form::submit('Supprimer', array('class' => 'btn btn-primary')) }}
+                            @endif
                         {{ Form::close() }}
                     @endforeach
                 </div>

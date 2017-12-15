@@ -84,6 +84,8 @@ class UserController extends Controller
           $user->pseudo       = $request['pseudo'];
           $user->mail         = $request['mail'];
           $user->display_name = $request['display_name'];
+          if (isset($request['admin']) && $request['admin'] == 1) $user->admin = true;
+          else $user->admin = false;
           $user->save();
 
           return redirect('users');

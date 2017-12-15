@@ -57,15 +57,17 @@
                           </div>
                       </div>
 
+                      @if(Auth::user()->id != $user->id)
                       <div class="form-group{{ $errors->has('admin') ? ' has-error' : '' }}">
                           <div class="col-md-6 col-md-offset-4">
                               <div class="checkbox">
                                   <label> <!--value-->
-                                      <input type="checkbox" name="admin" {{ $user->admin ? 'checked' : '' }}> Administrateur
+                                      <input type="checkbox" name="admin" value="1" {{ $user->admin ? 'checked' : '' }}> Administrateur
                                   </label>
                               </div>
                           </div>
                       </div>
+                      @endif
 
                       <div class="form-group">
                           <div class="col-md-8 col-md-offset-4">
