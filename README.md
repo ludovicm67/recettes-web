@@ -18,7 +18,7 @@ Il faudra tout d'abord récupérer le dépôt et se rendre dans le dossier :
 
 ```sh
 git clone git@github.com:ludovicm67/recettes-web.git
-cd recettes-web
+cd recettes-web/src
 ```
 
 Assurez-vous d'avoir une base de données MySQL existante.
