@@ -4,7 +4,6 @@
 # - php7
 # - bash
 # - composer (https://getcomposer.org/download/)
-# - yarn (https://yarnpkg.com/en/docs/install#linux-tab)
 ##############################################################################
 
 ##############################################################################
@@ -57,7 +56,7 @@ echo "All configuration saved in .env file"
 
 # Install dependencies
 composer install
-yarn && yarn run dev
+npm install && npm run dev
 
 # Generate secret key and make all migrations (can take a while)
 php artisan key:generate

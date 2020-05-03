@@ -4,7 +4,6 @@
 # - php7
 # - bash
 # - composer (https://getcomposer.org/download/)
-# - yarn (https://yarnpkg.com/en/docs/install#linux-tab)
 ##############################################################################
 
 ##############################################################################
@@ -16,7 +15,7 @@ git pull
 
 # update dependencies
 composer install
-yarn && yarn run production
+npm install && npm run production
 
 # make all new migrations (can take a while)
 php artisan migrate

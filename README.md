@@ -1,9 +1,7 @@
-Site de recettes de cuisine
-===========================
+# Site de recettes de cuisine
 
 Projet réalisé par Méline Bour-Lang et Ludovic Muller dans le cadre de
-l'UE *bases de données et programmation web* du semestre 5.
-
+l'UE _bases de données et programmation web_ du semestre 5.
 
 # Contraintes technologiques
 
@@ -11,22 +9,19 @@ Le projet nécessite une version de PHP supérieure ou égale à 7.0.0 et MySQL.
 
 Pour compiler les assets, installer les dépendances, il faudra également avoir :
 
-  - `node` et `npm` : https://nodejs.org/en/
-  - `yarn` : https://yarnpkg.com/lang/en/
-  - `composer` : https://getcomposer.org/
-
+- `node` et `npm` : https://nodejs.org/en/
+- `composer` : https://getcomposer.org/
 
 # Mise en route
 
 Il faudra tout d'abord récupérer le dépôt et se rendre dans le dossier :
 
 ```sh
-git clone git@github.com:BourMel/site_recettes.git
-cd site_recettes
+git clone git@github.com:ludovicm67/recettes-web.git
+cd recettes-web
 ```
 
 Assurez-vous d'avoir une base de données MySQL existante.
-
 
 ## Version automatisée
 
@@ -85,10 +80,9 @@ make serve
 
 et accéder à http://127.0.0.1:8000/ pour voir le résultat !
 
-
 ## Version manuelle
 
-Copier ensuite le fichier [.env.example](/.env.example) dans *.env* :
+Copier ensuite le fichier [.env.example](/.env.example) dans `.env` :
 
 ```sh
 cp .env.example .env
@@ -104,7 +98,7 @@ npm install && npm run dev
 php artisan key:generate
 ```
 
-Il faudra ensuite éditer le fichier *.env*, et remplacer cette partie
+Il faudra ensuite éditer le fichier `.env`, et remplacer cette partie
 par les bonnes informations pour se connecter à la base de données :
 
 ```
@@ -129,7 +123,6 @@ php artisan serve
 ```
 
 et accéder à http://127.0.0.1:8000/ pour voir le résultat !
-
 
 ## Installation des données de test
 
